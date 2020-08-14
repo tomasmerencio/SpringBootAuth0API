@@ -39,14 +39,50 @@ public class Usuario {
         this.dashboard = new Dashboard(this);
     }
 
-    public Usuario(String nombre, String apellido, String nombreUsuario, String auth0Id, String email){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.nombreUsuario = nombreUsuario;
-        this.auth0Id = auth0Id;
-        this.email = email;
+    public Usuario(Builder builder){
+        this.auth0Id = builder.auth0Id;
+        this.nombre = builder.nombre;
+        this.apellido = builder.apellido;
+        this.nombreUsuario = builder.nombreUsuario;
+        this.email = builder.email;
         this.listasDeSeguimiento = new ArrayList<>();
         this.dashboard = new Dashboard(this);
+    }
+
+    public static class Builder{
+        private String auth0Id;
+        private String nombre;
+        private String apellido;
+        private String nombreUsuario;
+        private String email;
+
+        public Builder(String auth0Id){
+            this.auth0Id = auth0Id;
+        }
+
+        public Builder setNombre(String nombre){
+            this.nombre = nombre;
+            return this;
+        }
+
+        public Builder setApellido(String apellido){
+            this.apellido = apellido;
+            return this;
+        }
+
+        public Builder setNombreUsuario(String nombreUsuario){
+            this.nombreUsuario = nombreUsuario;
+            return this;
+        }
+
+        public Builder setEmail(String email){
+            this.email = email;
+            return this;
+        }
+
+        public Usuario build(){
+            return new Usuario(this);
+        }
     }
 
     public Long getId() {
@@ -55,10 +91,6 @@ public class Usuario {
 
     public String getAuth0Id() {
         return auth0Id;
-    }
-
-    public void setAuth0Id(String auth0Id) {
-        this.auth0Id = auth0Id;
     }
 
     public String getNombreUsuario() {
@@ -73,27 +105,15 @@ public class Usuario {
         return apellido;
     }
 
-    public void agregarListaSeguimiento(ListaSeguimiento listaSeguimiento){
-        this.listasDeSeguimiento.add(listaSeguimiento);
-    }
-
     public Dashboard getDashboard() {
         return dashboard;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public List<ListaSeguimiento> getListasDeSeguimiento() {
+        return listasDeSeguimiento;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void agregarListaSeguimiento(ListaSeguimiento listaSeguimiento){
+        this.listasDeSeguimiento.add(listaSeguimiento);
     }
 }

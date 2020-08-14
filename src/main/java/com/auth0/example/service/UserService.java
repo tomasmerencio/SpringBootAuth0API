@@ -40,13 +40,12 @@ public class UserService implements IUserService{
         if (auth0IdExists(auth0User.getSub())) {
             return null;
         }
-        final Usuario usuario = new Usuario();
-
-        usuario.setNombre(auth0User.getGiven_name());
-        usuario.setApellido(auth0User.getFamily_name());
-        usuario.setAuth0Id(auth0User.getSub());
-        usuario.setEmail(auth0User.getEmail());
-        usuario.setNombreUsuario(auth0User.getNickname());
+        final Usuario usuario = new Usuario.Builder(auth0User.getSub())
+                .setNombre(auth0User.getGiven_name())
+                .setApellido(auth0User.getFamily_name())
+                .setNombreUsuario(auth0User.getNickname())
+                .setEmail(auth0User.getEmail())
+                .build();
 
         return userRepository.save(usuario);
     }

@@ -790,13 +790,13 @@ true posixrules
     <database id="2" parent="1" name="investing">
       <ObjectId>24685</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1802</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2072</IntrospectionStateNumber>
     </database>
     <database id="3" parent="1" name="postgres">
       <ObjectId>13318</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1799</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2076</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <role id="4" parent="1" name="pg_execute_server_program">
@@ -840,21 +840,21 @@ true posixrules
       <ObjectId>13018</ObjectId>
       <StateNumber>282</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1796</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2073</IntrospectionStateNumber>
     </schema>
     <schema id="15" parent="2" name="pg_catalog">
       <ObjectId>11</ObjectId>
       <Comment>system catalog schema</Comment>
       <StateNumber>275</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1797</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2074</IntrospectionStateNumber>
     </schema>
     <schema id="16" parent="2" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1803</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2075</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="17" parent="2" name="heap">
@@ -940,7 +940,7 @@ true posixrules
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1800</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2077</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="32" parent="3" name="heap">
@@ -56268,40 +56268,40 @@ r/10
       <CType>zu_ZA</CType>
     </collation>
     <sequence id="4687" parent="16" name="hibernate_sequence">
-      <ObjectId>27151</ObjectId>
+      <ObjectId>27767</ObjectId>
       <Owner>springuser</Owner>
-      <StateNumber>1781</StateNumber>
+      <StateNumber>2054</StateNumber>
       <DataType>bigint|0s</DataType>
     </sequence>
     <table id="4688" parent="16" name="activo">
-      <ObjectId>27153</ObjectId>
+      <ObjectId>27769</ObjectId>
       <Owner>springuser</Owner>
-      <StateNumber>1789</StateNumber>
+      <StateNumber>2062</StateNumber>
     </table>
     <table id="4689" parent="16" name="dashboard">
-      <ObjectId>27161</ObjectId>
+      <ObjectId>27777</ObjectId>
       <Owner>springuser</Owner>
-      <StateNumber>1788</StateNumber>
+      <StateNumber>2061</StateNumber>
     </table>
     <table id="4690" parent="16" name="dashboard_activo">
-      <ObjectId>27166</ObjectId>
+      <ObjectId>27782</ObjectId>
       <Owner>springuser</Owner>
-      <StateNumber>1789</StateNumber>
+      <StateNumber>2062</StateNumber>
     </table>
     <table id="4691" parent="16" name="lista_seguimiento">
-      <ObjectId>27171</ObjectId>
+      <ObjectId>27787</ObjectId>
       <Owner>springuser</Owner>
-      <StateNumber>1791</StateNumber>
+      <StateNumber>2064</StateNumber>
     </table>
     <table id="4692" parent="16" name="lista_seguimiento_activo">
-      <ObjectId>27176</ObjectId>
+      <ObjectId>27792</ObjectId>
       <Owner>springuser</Owner>
-      <StateNumber>1792</StateNumber>
+      <StateNumber>2065</StateNumber>
     </table>
     <table id="4693" parent="16" name="usuario">
-      <ObjectId>27181</ObjectId>
+      <ObjectId>27797</ObjectId>
       <Owner>springuser</Owner>
-      <StateNumber>1788</StateNumber>
+      <StateNumber>2061</StateNumber>
     </table>
     <check id="4694" parent="45" name="cardinal_number_domain_check">
       <ObjectId>13033</ObjectId>
@@ -102967,37 +102967,37 @@ umserver</ColNames>
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1782</StateNumber>
+      <StateNumber>2055</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="15438" parent="4688" name="descripcion">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1782</StateNumber>
+      <StateNumber>2055</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="15439" parent="4688" name="ticker">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1782</StateNumber>
+      <StateNumber>2055</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="15440" parent="4688" name="tipo_activo">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1782</StateNumber>
+      <StateNumber>2055</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="15441" parent="4688" name="activo_pkey">
-      <ObjectId>27159</ObjectId>
-      <StateNumber>1782</StateNumber>
+      <ObjectId>27775</ObjectId>
+      <StateNumber>2055</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="15442" parent="4688" name="activo_pkey">
-      <ObjectId>27160</ObjectId>
-      <StateNumber>1782</StateNumber>
+      <ObjectId>27776</ObjectId>
+      <StateNumber>2055</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>activo_pkey</UnderlyingIndexName>
@@ -103006,40 +103006,40 @@ umserver</ColNames>
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1783</StateNumber>
+      <StateNumber>2056</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="15444" parent="4689" name="nombre">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1783</StateNumber>
+      <StateNumber>2056</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="15445" parent="4689" name="usuario_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>1783</StateNumber>
+      <StateNumber>2056</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <index id="15446" parent="4689" name="dashboard_pkey">
-      <ObjectId>27164</ObjectId>
-      <StateNumber>1783</StateNumber>
+      <ObjectId>27780</ObjectId>
+      <StateNumber>2056</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="15447" parent="4689" name="dashboard_pkey">
-      <ObjectId>27165</ObjectId>
-      <StateNumber>1783</StateNumber>
+      <ObjectId>27781</ObjectId>
+      <StateNumber>2056</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>dashboard_pkey</UnderlyingIndexName>
     </key>
     <foreign-key id="15448" parent="4689" name="fkdeljspgr6w93q0vigw01o278c">
-      <ObjectId>27189</ObjectId>
-      <StateNumber>1788</StateNumber>
+      <ObjectId>27805</ObjectId>
+      <StateNumber>2061</StateNumber>
       <ColNames>usuario_id</ColNames>
-      <RefTableId>27181</RefTableId>
+      <RefTableId>27797</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>usuario</RefTableName>
       <RefKeyName>usuario_pkey</RefKeyName>
@@ -103049,56 +103049,56 @@ umserver</ColNames>
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1784</StateNumber>
+      <StateNumber>2057</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="15450" parent="4690" name="fecha_hora">
       <Position>2</Position>
       <DataType>timestamp|0s</DataType>
-      <StateNumber>1784</StateNumber>
+      <StateNumber>2057</StateNumber>
       <TypeId>1114</TypeId>
     </column>
     <column id="15451" parent="4690" name="activo_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>1784</StateNumber>
+      <StateNumber>2057</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="15452" parent="4690" name="dashboard_id">
       <Position>4</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>1784</StateNumber>
+      <StateNumber>2057</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <index id="15453" parent="4690" name="dashboard_activo_pkey">
-      <ObjectId>27169</ObjectId>
-      <StateNumber>1784</StateNumber>
+      <ObjectId>27785</ObjectId>
+      <StateNumber>2057</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="15454" parent="4690" name="dashboard_activo_pkey">
-      <ObjectId>27170</ObjectId>
-      <StateNumber>1784</StateNumber>
+      <ObjectId>27786</ObjectId>
+      <StateNumber>2057</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>dashboard_activo_pkey</UnderlyingIndexName>
     </key>
     <foreign-key id="15455" parent="4690" name="fk5b7jd85lvmfnc9ejg2fsswphi">
-      <ObjectId>27194</ObjectId>
-      <StateNumber>1789</StateNumber>
+      <ObjectId>27810</ObjectId>
+      <StateNumber>2062</StateNumber>
       <ColNames>activo_id</ColNames>
-      <RefTableId>27153</RefTableId>
+      <RefTableId>27769</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>activo</RefTableName>
       <RefKeyName>activo_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="15456" parent="4690" name="fkex4cglajmjc502lk9rmbxkuuo">
-      <ObjectId>27199</ObjectId>
-      <StateNumber>1790</StateNumber>
+      <ObjectId>27815</ObjectId>
+      <StateNumber>2063</StateNumber>
       <ColNames>dashboard_id</ColNames>
-      <RefTableId>27161</RefTableId>
+      <RefTableId>27777</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>dashboard</RefTableName>
       <RefKeyName>dashboard_pkey</RefKeyName>
@@ -103108,40 +103108,40 @@ umserver</ColNames>
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1785</StateNumber>
+      <StateNumber>2058</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="15458" parent="4691" name="nombre">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1785</StateNumber>
+      <StateNumber>2058</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="15459" parent="4691" name="usuario_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>1785</StateNumber>
+      <StateNumber>2058</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <index id="15460" parent="4691" name="lista_seguimiento_pkey">
-      <ObjectId>27174</ObjectId>
-      <StateNumber>1785</StateNumber>
+      <ObjectId>27790</ObjectId>
+      <StateNumber>2058</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="15461" parent="4691" name="lista_seguimiento_pkey">
-      <ObjectId>27175</ObjectId>
-      <StateNumber>1785</StateNumber>
+      <ObjectId>27791</ObjectId>
+      <StateNumber>2058</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>lista_seguimiento_pkey</UnderlyingIndexName>
     </key>
     <foreign-key id="15462" parent="4691" name="fk5enymo27m01fktvv8jeobf4uj">
-      <ObjectId>27204</ObjectId>
-      <StateNumber>1791</StateNumber>
+      <ObjectId>27820</ObjectId>
+      <StateNumber>2064</StateNumber>
       <ColNames>usuario_id</ColNames>
-      <RefTableId>27181</RefTableId>
+      <RefTableId>27797</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>usuario</RefTableName>
       <RefKeyName>usuario_pkey</RefKeyName>
@@ -103151,56 +103151,56 @@ umserver</ColNames>
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1786</StateNumber>
+      <StateNumber>2059</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="15464" parent="4692" name="fecha_hora">
       <Position>2</Position>
       <DataType>timestamp|0s</DataType>
-      <StateNumber>1786</StateNumber>
+      <StateNumber>2059</StateNumber>
       <TypeId>1114</TypeId>
     </column>
     <column id="15465" parent="4692" name="activo_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>1786</StateNumber>
+      <StateNumber>2059</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="15466" parent="4692" name="lista_seguimiento_id">
       <Position>4</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>1786</StateNumber>
+      <StateNumber>2059</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <index id="15467" parent="4692" name="lista_seguimiento_activo_pkey">
-      <ObjectId>27179</ObjectId>
-      <StateNumber>1786</StateNumber>
+      <ObjectId>27795</ObjectId>
+      <StateNumber>2059</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="15468" parent="4692" name="lista_seguimiento_activo_pkey">
-      <ObjectId>27180</ObjectId>
-      <StateNumber>1786</StateNumber>
+      <ObjectId>27796</ObjectId>
+      <StateNumber>2059</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>lista_seguimiento_activo_pkey</UnderlyingIndexName>
     </key>
     <foreign-key id="15469" parent="4692" name="fkotbtswg36gcxbvhq5npi64fdu">
-      <ObjectId>27209</ObjectId>
-      <StateNumber>1792</StateNumber>
+      <ObjectId>27825</ObjectId>
+      <StateNumber>2065</StateNumber>
       <ColNames>activo_id</ColNames>
-      <RefTableId>27153</RefTableId>
+      <RefTableId>27769</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>activo</RefTableName>
       <RefKeyName>activo_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="15470" parent="4692" name="fkf1pb6ajpiy5jfq1oq2sv88ffw">
-      <ObjectId>27214</ObjectId>
-      <StateNumber>1793</StateNumber>
+      <ObjectId>27830</ObjectId>
+      <StateNumber>2066</StateNumber>
       <ColNames>lista_seguimiento_id</ColNames>
-      <RefTableId>27171</RefTableId>
+      <RefTableId>27787</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>lista_seguimiento</RefTableName>
       <RefKeyName>lista_seguimiento_pkey</RefKeyName>
@@ -103210,49 +103210,49 @@ umserver</ColNames>
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1787</StateNumber>
+      <StateNumber>2060</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="15472" parent="4693" name="apellido">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1787</StateNumber>
+      <StateNumber>2060</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="15473" parent="4693" name="auth0_id">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1787</StateNumber>
+      <StateNumber>2060</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="15474" parent="4693" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1787</StateNumber>
+      <StateNumber>2060</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="15475" parent="4693" name="nombre">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1787</StateNumber>
+      <StateNumber>2060</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="15476" parent="4693" name="nombre_usuario">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1787</StateNumber>
+      <StateNumber>2060</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="15477" parent="4693" name="usuario_pkey">
-      <ObjectId>27187</ObjectId>
-      <StateNumber>1787</StateNumber>
+      <ObjectId>27803</ObjectId>
+      <StateNumber>2060</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="15478" parent="4693" name="usuario_pkey">
-      <ObjectId>27188</ObjectId>
-      <StateNumber>1787</StateNumber>
+      <ObjectId>27804</ObjectId>
+      <StateNumber>2060</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>usuario_pkey</UnderlyingIndexName>

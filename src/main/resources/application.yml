@@ -18,9 +18,9 @@ spring:
           user-info-uri: https://dev-qgx69301.auth0.com/userinfo
 
   datasource:
-    # url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/ngaqonmr
-    # username: ngaqonmr
-    # password: QAsRFU1ISA29wiIcev_wSZS0rsCM2NqW
+    # url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/database
+    # username: username
+    # password: password
     url: jdbc:postgresql://localhost:5432/investing
     username: springuser
     password: ThePassword
