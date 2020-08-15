@@ -26,7 +26,7 @@ public class DashboardController {
     private IDashboardService dashboardService;
 
     @GetMapping("/assets")
-    public ResponseEntity<List<Activo>> getAllAssets(@RequestHeader(name="Authorization") String accessToken){
+    public ResponseEntity<Dashboard> getAllAssets(@RequestHeader(name="Authorization") String accessToken){
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try{
@@ -36,7 +36,7 @@ public class DashboardController {
             if(activos.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(activos, HttpStatus.OK);
+            return new ResponseEntity<>(usuario.getDashboard(), HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -44,19 +44,17 @@ public class DashboardController {
     }
 
     @PostMapping("/assets")
-    public ResponseEntity<Activo> addAsset(@RequestHeader(name="Authorization") String accessToken, @RequestBody String activoId) {
+    public ResponseEntity<Activo> addAsset(@RequestHeader(name="Authorization") String accessToken, @RequestBody Long activoId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try{
             Usuario usuario = userService.getUserFromAuth0Id(auth0User.getSub());
             Dashboard dashboard = usuario.getDashboard();
-            Long activoIdL = Long.parseLong(activoId);
-            Activo activo = dashboardService.addActivoToDashboard(activoIdL, dashboard);
+            Activo activo = dashboardService.addActivoToDashboard(activoId, dashboard);
             if(activo != null){
                 return new ResponseEntity<>(activo, HttpStatus.OK);
             }
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
-
 
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

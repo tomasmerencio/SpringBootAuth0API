@@ -64,10 +64,6 @@ public class DashboardActivo{
         return activo;
     }
 
-    public Dashboard getDashboard() {
-        return dashboard;
-    }
-
     public Timestamp getFechaHoraCreacion() {
         return fechaHoraCreacion;
     }

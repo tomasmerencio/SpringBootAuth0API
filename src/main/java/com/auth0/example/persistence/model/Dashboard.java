@@ -48,10 +48,6 @@ public class Dashboard{
         return nombre;
     }
 
-    public List<DashboardActivo> getDashboardActivos() {
-        return dashboardActivos;
-    }
-
     public List<Activo> getActivos(){
         return this.dashboardActivos.stream().map(DashboardActivo::getActivo).collect(Collectors.toList());
     }
