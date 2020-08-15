@@ -3,6 +3,7 @@ package com.auth0.example.persistence.model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @Table(name = "dashboard_activo")
@@ -20,17 +21,39 @@ public class DashboardActivo{
     @JoinColumn(name = "dashboard_id")
     private Dashboard dashboard;
 
-    @Column(name = "fecha_hora", columnDefinition = "TIMESTAMP")
-    private Timestamp fechaHora;
+    @Column(name = "fecha_hora_creacion", columnDefinition = "TIMESTAMP")
+    private Timestamp fechaHoraCreacion;
 
     public DashboardActivo(){
 
     }
 
-    public DashboardActivo(Activo activo, Dashboard dashboard){
-        this.activo = activo;
-        this.dashboard = dashboard;
-        this.fechaHora = Timestamp.valueOf(LocalDateTime.now());
+    public DashboardActivo(Builder builder){
+        this.activo = builder.activo;
+        this.dashboard = builder.dashboard;
+        this.fechaHoraCreacion = Timestamp.valueOf(LocalDateTime.now());
+    }
+
+    public static class Builder{
+        private Activo activo;
+        private Dashboard dashboard;
+
+        public Builder(){
+        }
+
+        public Builder setActivo(Activo activo){
+            this.activo = activo;
+            return this;
+        }
+
+        public Builder setDashboard(Dashboard dashboard){
+            this.dashboard = dashboard;
+            return this;
+        }
+
+        public DashboardActivo build(){
+            return new DashboardActivo(this);
+        }
     }
 
     public Long getId() {
@@ -43,5 +66,9 @@ public class DashboardActivo{
 
     public Dashboard getDashboard() {
         return dashboard;
+    }
+
+    public Timestamp getFechaHoraCreacion() {
+        return fechaHoraCreacion;
     }
 }

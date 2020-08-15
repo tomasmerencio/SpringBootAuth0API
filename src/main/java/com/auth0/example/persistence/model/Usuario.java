@@ -1,6 +1,8 @@
 package com.auth0.example.persistence.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
 @Table(name = "usuario")
 public class Usuario {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="id", nullable=false, updatable=false)
     private Long id;
 
@@ -26,6 +28,9 @@ public class Usuario {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "fecha_hora_creacion", columnDefinition = "TIMESTAMP")
+    private Timestamp fechaHoraCreacion;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
@@ -45,6 +50,7 @@ public class Usuario {
         this.apellido = builder.apellido;
         this.nombreUsuario = builder.nombreUsuario;
         this.email = builder.email;
+        this.fechaHoraCreacion = Timestamp.valueOf(LocalDateTime.now());
         this.listasDeSeguimiento = new ArrayList<>();
         this.dashboard = new Dashboard(this);
     }
@@ -103,6 +109,14 @@ public class Usuario {
 
     public String getApellido() {
         return apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Timestamp getFechaHoraCreacion() {
+        return fechaHoraCreacion;
     }
 
     public Dashboard getDashboard() {

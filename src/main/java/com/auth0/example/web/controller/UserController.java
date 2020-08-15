@@ -19,20 +19,20 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping(value = "/signup")
+    @PostMapping(value = "/signup")
     public ResponseEntity<Usuario> registrarUsuario(@RequestHeader(name="Authorization") String accessToken) {
 
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
-
+        System.out.println(accessToken);
         try {
             Usuario registrado = userService.registerNewUserAccount(auth0User);
             if (registrado != null) {
                 return new ResponseEntity<>(registrado, HttpStatus.OK);
             }
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

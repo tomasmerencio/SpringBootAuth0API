@@ -50,7 +50,11 @@ public class UserService implements IUserService{
         return userRepository.save(usuario);
     }
 
-    private boolean auth0IdExists(final String auth0Id) {
+    private Boolean auth0IdExists(final String auth0Id) {
         return userRepository.findByAuth0Id(auth0Id) != null;
+    }
+
+    public Usuario getUserFromAuth0Id(final String auth0Id){
+        return userRepository.findByAuth0Id(auth0Id);
     }
 }
