@@ -31,8 +31,7 @@ public class DashboardController {
 
         try{
             Usuario usuario = userService.getUserFromAuth0Id(auth0User.getSub());
-            List<DashboardActivo> dashboardActivos = usuario.getDashboard().getDashboardActivos();
-            List<Activo> activos = dashboardActivos.stream().map(DashboardActivo::getActivo).collect(Collectors.toList());
+            List<Activo> activos = usuario.getDashboard().getActivos();
 
             if(activos.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -53,7 +52,11 @@ public class DashboardController {
             Dashboard dashboard = usuario.getDashboard();
             Long activoIdL = Long.parseLong(activoId);
             Activo activo = dashboardService.addActivoToDashboard(activoIdL, dashboard);
-            return new ResponseEntity<>(activo, HttpStatus.OK);
+            if(activo != null){
+                return new ResponseEntity<>(activo, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+
 
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

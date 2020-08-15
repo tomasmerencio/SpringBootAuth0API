@@ -22,19 +22,26 @@ public class DashboardService implements IDashboardService{
     @Override
     @Transactional
     public Activo addActivoToDashboard(Long activoId, Dashboard dashboard){
-        System.out.println("activoId: " + activoId);
         Activo activo = activoRepository
                 .findById(activoId)
-                .orElseThrow(() -> new EntityNotFoundException("activoId no encontrado: " + activoId));
-        System.out.println("activo: " + activo);
-        DashboardActivo dashboardActivo = new DashboardActivo.Builder()
-                .setActivo(activo)
-                .setDashboard(dashboard)
-                .build();
+                .orElseThrow(EntityNotFoundException::new);
+        if(!activoExisteEnDashboard(activoId, dashboard.getId())){
+            DashboardActivo dashboardActivo = new DashboardActivo.Builder()
+                    .setActivo(activo)
+                    .setDashboard(dashboard)
+                    .build();
 
-        dashboard.agregarDashboardActivo(dashboardActivo);
+            dashboard.agregarDashboardActivo(dashboardActivo);
+            dashboardRepository.save(dashboard);
+            return activo;
+        }
+        return null;
+    }
 
-        dashboardRepository.save(dashboard);
-        return activo;
+    private Boolean activoExisteEnDashboard(Long activoId, Long dashboardId){
+        Dashboard dashboard = dashboardRepository
+                .findById(dashboardId)
+                .orElseThrow(EntityNotFoundException::new);
+        return dashboard.getActivos().stream().anyMatch(a -> a.getId().equals(activoId));
     }
 }

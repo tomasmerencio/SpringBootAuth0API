@@ -3,6 +3,7 @@ package com.auth0.example.persistence.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="dashboard")
@@ -49,5 +50,9 @@ public class Dashboard{
 
     public List<DashboardActivo> getDashboardActivos() {
         return dashboardActivos;
+    }
+
+    public List<Activo> getActivos(){
+        return this.dashboardActivos.stream().map(DashboardActivo::getActivo).collect(Collectors.toList());
     }
 }
