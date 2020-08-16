@@ -5,4 +5,5 @@ import com.auth0.example.persistence.model.Dashboard;
 
 public interface IDashboardService {
     Activo addActivoToDashboard(Long activoId, Dashboard dashboard);
+    void deleteAsset(Long activoId, Dashboard dashboardId);
 }

@@ -3,6 +3,7 @@ package com.auth0.example.persistence.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Entity
@@ -16,7 +17,7 @@ public class Dashboard{
     @Column(name="nombre")
     private String nombre;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "dashboard")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "dashboard", orphanRemoval=true)
     private List<DashboardActivo> dashboardActivos;
 
     @OneToOne
@@ -36,10 +37,6 @@ public class Dashboard{
         return id;
     }
 
-    public void agregarDashboardActivo(DashboardActivo dashboardActivo){
-        this.dashboardActivos.add(dashboardActivo);
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -50,5 +47,13 @@ public class Dashboard{
 
     public List<Activo> getActivos(){
         return this.dashboardActivos.stream().map(DashboardActivo::getActivo).collect(Collectors.toList());
+    }
+
+    public void agregarDashboardActivo(DashboardActivo dashboardActivo){
+        this.dashboardActivos.add(dashboardActivo);
+    }
+
+    public void eliminarActivo(Long activoId){
+        this.dashboardActivos.removeIf(dA -> dA.getActivo().getId().equals(activoId));
     }
 }
