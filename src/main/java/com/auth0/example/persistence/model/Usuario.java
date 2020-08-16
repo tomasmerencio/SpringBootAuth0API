@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "usuario")
@@ -129,5 +130,16 @@ public class Usuario {
 
     public void agregarListaSeguimiento(ListaSeguimiento listaSeguimiento){
         this.listasDeSeguimiento.add(listaSeguimiento);
+    }
+
+    public Optional<ListaSeguimiento> getListaSeguimientoPorId(Long id){
+        return this.listasDeSeguimiento
+                .stream()
+                .filter(lS -> lS.getId().equals(id))
+                .findFirst();
+    }
+
+    public void eliminarListaSeguimiento(Long watchlistId){
+        this.listasDeSeguimiento.removeIf(lS -> lS.getId().equals(watchlistId));
     }
 }

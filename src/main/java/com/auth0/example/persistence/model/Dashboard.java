@@ -17,7 +17,12 @@ public class Dashboard{
     @Column(name="nombre")
     private String nombre;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "dashboard", orphanRemoval=true)
+    @OneToMany(
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        mappedBy = "dashboard",
+        orphanRemoval=true
+    )
     private List<DashboardActivo> dashboardActivos;
 
     @OneToOne

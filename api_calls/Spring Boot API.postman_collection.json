@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "c6be7c98-9149-472e-9759-8483414e652f",
+		"name": "Spring Boot API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registrar Usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/users/signup",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Activos del Dashboard",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/dashboard",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Activo a Dashboard",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "67",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/dashboard/assets",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"dashboard",
+						"assets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Activo de Dashboard",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "66",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/dashboard/assets",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"dashboard",
+						"assets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener ListasSeguimiento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/watchlists",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"watchlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear ListaSeguimiento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "lista1",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/watchlists",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"watchlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar ListaSeguimiento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "lista2"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/watchlists/7",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"watchlists",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Activo a ListaSeguimiento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "50",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/watchlists/6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"watchlists",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Activo de ListaSeguimiento",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "50",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/watchlists/6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"watchlists",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar ListaSeguimiento",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "7",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/watchlists",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"watchlists"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

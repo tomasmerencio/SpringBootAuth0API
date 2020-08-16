@@ -1,7 +1,6 @@
 package com.auth0.example.service;
 
 import com.auth0.example.persistence.dao.ActivoRepository;
-import com.auth0.example.persistence.dao.DashboardActivoRepository;
 import com.auth0.example.persistence.dao.DashboardRepository;
 import com.auth0.example.persistence.model.Activo;
 import com.auth0.example.persistence.model.Dashboard;
@@ -19,9 +18,6 @@ public class DashboardService implements IDashboardService{
 
     @Autowired
     private DashboardRepository dashboardRepository;
-
-    @Autowired
-    DashboardActivoRepository dashboardActivoRepository;
 
     @Override
     @Transactional

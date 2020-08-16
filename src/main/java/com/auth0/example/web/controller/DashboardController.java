@@ -37,7 +37,8 @@ public class DashboardController {
     }
 
     @PostMapping("/assets")
-    public ResponseEntity<Activo> addAsset(@RequestHeader(name="Authorization") String accessToken, @RequestBody Long activoId) {
+    public ResponseEntity<Activo> addAsset(@RequestHeader(name="Authorization") String accessToken,
+                                           @RequestBody Long activoId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try{
@@ -56,7 +57,8 @@ public class DashboardController {
     }
 
     @DeleteMapping("/assets")
-    public ResponseEntity<HttpStatus> deleteAsset(@RequestHeader(name="Authorization") String accessToken, @RequestBody Long activoId){
+    public ResponseEntity<HttpStatus> deleteAsset(@RequestHeader(name="Authorization") String accessToken,
+                                                  @RequestBody Long activoId){
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try{

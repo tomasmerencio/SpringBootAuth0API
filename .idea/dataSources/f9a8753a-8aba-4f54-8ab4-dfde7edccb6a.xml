@@ -56293,11 +56293,13 @@ r/10
     </table>
     <table id="4691" parent="16" name="lista_seguimiento">
       <ObjectId>27787</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>springuser</Owner>
       <StateNumber>2064</StateNumber>
     </table>
     <table id="4692" parent="16" name="lista_seguimiento_activo">
       <ObjectId>27792</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>springuser</Owner>
       <StateNumber>2065</StateNumber>
     </table>
