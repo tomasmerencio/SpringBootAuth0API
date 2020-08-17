@@ -1,7 +1,7 @@
 package com.auth0.example.service;
 
-import com.auth0.example.persistence.dao.ActivoRepository;
-import com.auth0.example.persistence.dao.ListaSeguimientoRepository;
+import com.auth0.example.persistence.dao.AssetRepository;
+import com.auth0.example.persistence.dao.WatchlistRepository;
 import com.auth0.example.persistence.dao.UserRepository;
 import com.auth0.example.persistence.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,63 +14,63 @@ import java.util.Optional;
 @Service
 public class WatchlistService implements IWatchlistService{
     @Autowired
-    ActivoRepository activoRepository;
+    AssetRepository assetRepository;
 
     @Autowired
-    ListaSeguimientoRepository listaSeguimientoRepository;
+    WatchlistRepository watchlistRepository;
 
     @Autowired
     UserRepository userRepository;
 
     @Override
-    public Activo addActivoToLista(Usuario usuario, Long assetId, Long watchlistId) {
-        ListaSeguimiento listaSeguimiento = getWatctlistFromUser(usuario, watchlistId).orElseThrow(EntityNotFoundException::new);
-        if(!activoExisteEnListaSeguimiento(assetId, listaSeguimiento)){
-            Activo activo = activoRepository
+    public Asset addAssetToWatchlist(User user, Long assetId, Long watchlistId) {
+        Watchlist watchList = getWatchlistFromUser(user, watchlistId).orElseThrow(EntityNotFoundException::new);
+        if(!assetExistsOnWatchlist(assetId, watchList)){
+            Asset asset = assetRepository
                     .findById(assetId)
                     .orElseThrow(EntityNotFoundException::new);
 
-            ListaSeguimientoActivo listaSeguimientoActivo = new ListaSeguimientoActivo.Builder()
-                    .setActivo(activo)
-                    .setListaSeguimiento(listaSeguimiento)
+            WatchlistAsset watchlistAsset = new WatchlistAsset.Builder()
+                    .setAsset(asset)
+                    .setWatchlist(watchList)
                     .build();
 
-            listaSeguimiento.agregarListaSeguimientoActivo(listaSeguimientoActivo);
-            listaSeguimientoRepository.save(listaSeguimiento);
-            return activo;
+            watchList.addWatchlistAsset(watchlistAsset);
+            watchlistRepository.save(watchList);
+            return asset;
         }
         return null;
     }
 
-    private Boolean activoExisteEnListaSeguimiento(Long activoId, ListaSeguimiento listaSeguimiento){
-        return listaSeguimiento.getActivos().stream().anyMatch(a -> a.getId().equals(activoId));
+    private Boolean assetExistsOnWatchlist(Long activoId, Watchlist watchList){
+        return watchList.getAssets().stream().anyMatch(a -> a.getId().equals(activoId));
     }
 
     @Override
-    public void deleteAsset(Usuario usuario, Long activoId, Long watchlistId) {
-        ListaSeguimiento listaSeguimiento = getWatctlistFromUser(usuario, watchlistId).orElseThrow(EntityNotFoundException::new);
-        listaSeguimiento.eliminarActivo(activoId);
-        listaSeguimientoRepository.save(listaSeguimiento);
-    }
-
-    @Override
-    @Transactional
-    public ListaSeguimiento agregarListaSeguimiento(Usuario usuario, String nombre){
-        ListaSeguimiento listaSeguimiento = new ListaSeguimiento(nombre);
-        usuario.agregarListaSeguimiento(listaSeguimiento);
-        listaSeguimientoRepository.save(listaSeguimiento);
-        return listaSeguimiento;
+    public void deleteAsset(User user, Long assetId, Long watchlistId) {
+        Watchlist watchList = getWatchlistFromUser(user, watchlistId).orElseThrow(EntityNotFoundException::new);
+        watchList.deleteAsset(assetId);
+        watchlistRepository.save(watchList);
     }
 
     @Override
     @Transactional
-    public ListaSeguimiento editarNombre(Usuario usuario, Long watchlistId, String nombre){
-        Optional<ListaSeguimiento> datosListaSeguimiento = getWatctlistFromUser(usuario, watchlistId);
-        if(datosListaSeguimiento.isPresent()){
-            ListaSeguimiento listaSeguimiento = datosListaSeguimiento.get();
-            listaSeguimiento.setNombre(nombre);
-            listaSeguimientoRepository.save(listaSeguimiento);
-            return listaSeguimiento;
+    public Watchlist addWatchlist(User user, String name){
+        Watchlist watchList = new Watchlist(name);
+        user.addWatchlist(watchList);
+        watchlistRepository.save(watchList);
+        return watchList;
+    }
+
+    @Override
+    @Transactional
+    public Watchlist editName(User user, Long watchlistId, String name){
+        Optional<Watchlist> watchlistData = getWatchlistFromUser(user, watchlistId);
+        if(watchlistData.isPresent()){
+            Watchlist watchList = watchlistData.get();
+            watchList.setName(name);
+            watchlistRepository.save(watchList);
+            return watchList;
         } else {
             return null;
         }
@@ -78,15 +78,15 @@ public class WatchlistService implements IWatchlistService{
 
     @Override
     @Transactional
-    public void eliminarListaSeguimiento(Usuario usuario, Long watchlistId){
-        if(getWatctlistFromUser(usuario, watchlistId).isPresent()){
-            usuario.eliminarListaSeguimiento(watchlistId);
-            listaSeguimientoRepository.deleteById(watchlistId);
-            userRepository.save(usuario);
+    public void deleteWatchlist(User user, Long watchlistId){
+        if(getWatchlistFromUser(user, watchlistId).isPresent()){
+            user.deleteWatchlist(watchlistId);
+            watchlistRepository.deleteById(watchlistId);
+            userRepository.save(user);
         }
     }
 
-    private Optional<ListaSeguimiento> getWatctlistFromUser(Usuario usuario, Long watchlistId){
-        return usuario.getListaSeguimientoPorId(watchlistId);
+    private Optional<Watchlist> getWatchlistFromUser(User user, Long watchlistId){
+        return user.getWatchlistById(watchlistId);
     }
 }

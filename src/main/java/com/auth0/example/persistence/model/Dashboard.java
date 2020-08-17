@@ -3,19 +3,18 @@ package com.auth0.example.persistence.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Entity
 @Table(name="dashboard")
 public class Dashboard{
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable=false, updatable=false)
     private Long id;
 
-    @Column(name="nombre")
-    private String nombre;
+    @Column(name="name")
+    private String name;
 
     @OneToMany(
         fetch = FetchType.LAZY,
@@ -23,42 +22,42 @@ public class Dashboard{
         mappedBy = "dashboard",
         orphanRemoval=true
     )
-    private List<DashboardActivo> dashboardActivos;
+    private List<DashboardAsset> dashboardAssets;
 
     @OneToOne
-    private Usuario usuario;
+    private User user;
 
     public Dashboard(){
 
     }
 
-    public Dashboard(Usuario usuario){
-        this.usuario = usuario;
-        this.nombre = "Dashboard";
-        this.dashboardActivos = new ArrayList<>();
+    public Dashboard(User user){
+        this.user = user;
+        this.name = "Dashboard";
+        this.dashboardAssets = new ArrayList<>();
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public List<Activo> getActivos(){
-        return this.dashboardActivos.stream().map(DashboardActivo::getActivo).collect(Collectors.toList());
+    public List<Asset> getAssets(){
+        return this.dashboardAssets.stream().map(DashboardAsset::getAsset).collect(Collectors.toList());
     }
 
-    public void agregarDashboardActivo(DashboardActivo dashboardActivo){
-        this.dashboardActivos.add(dashboardActivo);
+    public void addDashboardAsset(DashboardAsset dashboardAsset){
+        this.dashboardAssets.add(dashboardAsset);
     }
 
-    public void eliminarActivo(Long activoId){
-        this.dashboardActivos.removeIf(dA -> dA.getActivo().getId().equals(activoId));
+    public void deleteAsset(Long assetId){
+        this.dashboardAssets.removeIf(dA -> dA.getAsset().getId().equals(assetId));
     }
 }

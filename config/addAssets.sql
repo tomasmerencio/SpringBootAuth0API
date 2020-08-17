@@ -1,4 +1,4 @@
-INSERT INTO activo (ticker,tipo_activo,descripcion)
+INSERT INTO asset (ticker,asset_type,description)
 VALUES
 ('AAPL','CEDEAR','Apple Inc.'),
 ('ABEV','CEDEAR','Ambev SA ADR'),

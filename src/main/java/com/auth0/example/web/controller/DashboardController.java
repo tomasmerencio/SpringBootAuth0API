@@ -27,9 +27,9 @@ public class DashboardController {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try{
-            Usuario usuario = userService.getUserFromAuth0Id(auth0User.getSub());
+            User user = userService.getUserFromAuth0Id(auth0User.getSub());
 
-            return new ResponseEntity<>(usuario.getDashboard(), HttpStatus.OK);
+            return new ResponseEntity<>(user.getDashboard(), HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -37,17 +37,17 @@ public class DashboardController {
     }
 
     @PostMapping("/assets")
-    public ResponseEntity<Activo> addAsset(@RequestHeader(name="Authorization") String accessToken,
-                                           @RequestBody Long activoId) {
+    public ResponseEntity<Asset> addAsset(@RequestHeader(name="Authorization") String accessToken,
+                                          @RequestBody Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try{
-            Usuario usuario = userService.getUserFromAuth0Id(auth0User.getSub());
-            Dashboard dashboard = usuario.getDashboard();
-            Activo activo = dashboardService.addActivoToDashboard(activoId, dashboard);
+            User user = userService.getUserFromAuth0Id(auth0User.getSub());
+            Dashboard dashboard = user.getDashboard();
+            Asset asset = dashboardService.addAssetToDashbooard(assetId, dashboard);
 
-            if(activo != null){
-                return new ResponseEntity<>(activo, HttpStatus.OK);
+            if(asset != null){
+                return new ResponseEntity<>(asset, HttpStatus.OK);
             }
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
 
@@ -58,13 +58,13 @@ public class DashboardController {
 
     @DeleteMapping("/assets")
     public ResponseEntity<HttpStatus> deleteAsset(@RequestHeader(name="Authorization") String accessToken,
-                                                  @RequestBody Long activoId){
+                                                  @RequestBody Long assetId){
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try{
-            Usuario usuario = userService.getUserFromAuth0Id(auth0User.getSub());
-            Dashboard dashboard = usuario.getDashboard();
-            dashboardService.deleteAsset(activoId, dashboard);
+            User user = userService.getUserFromAuth0Id(auth0User.getSub());
+            Dashboard dashboard = user.getDashboard();
+            dashboardService.deleteAsset(assetId, dashboard);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

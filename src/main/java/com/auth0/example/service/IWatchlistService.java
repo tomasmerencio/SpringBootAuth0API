@@ -1,13 +1,13 @@
 package com.auth0.example.service;
 
-import com.auth0.example.persistence.model.Activo;
-import com.auth0.example.persistence.model.ListaSeguimiento;
-import com.auth0.example.persistence.model.Usuario;
+import com.auth0.example.persistence.model.Asset;
+import com.auth0.example.persistence.model.Watchlist;
+import com.auth0.example.persistence.model.User;
 
 public interface IWatchlistService {
-    Activo addActivoToLista(Usuario usuario, Long activoId, Long listaSeguimientoId);
-    void deleteAsset(Usuario usuario, Long activoId, Long watchlistId);
-    ListaSeguimiento agregarListaSeguimiento(Usuario usuario, String nombre);
-    ListaSeguimiento editarNombre(Usuario usuario, Long id, String nombre);
-    void eliminarListaSeguimiento(Usuario usuario, Long id);
+    Asset addAssetToWatchlist(User user, Long assetId, Long watchlistId);
+    void deleteAsset(User user, Long assetId, Long watchlistId);
+    Watchlist addWatchlist(User user, String name);
+    Watchlist editName(User user, Long id, String name);
+    void deleteWatchlist(User user, Long id);
 }

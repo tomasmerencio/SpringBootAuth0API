@@ -2,7 +2,7 @@ package com.auth0.example.service;
 
 import com.auth0.example.persistence.dao.UserRepository;
 import com.auth0.example.persistence.model.Auth0User;
-import com.auth0.example.persistence.model.Usuario;
+import com.auth0.example.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -36,25 +36,25 @@ public class UserService implements IUserService{
 
     @Override
     @Transactional
-    public Usuario registerNewUserAccount(final Auth0User auth0User) {
+    public User registerNewUserAccount(final Auth0User auth0User) {
         if (auth0IdExists(auth0User.getSub())) {
             return null;
         }
-        final Usuario usuario = new Usuario.Builder(auth0User.getSub())
-                .setNombre(auth0User.getGiven_name())
-                .setApellido(auth0User.getFamily_name())
-                .setNombreUsuario(auth0User.getNickname())
+        final User user = new User.Builder(auth0User.getSub())
+                .setName(auth0User.getGiven_name())
+                .setFamilyName(auth0User.getFamily_name())
+                .setUsername(auth0User.getNickname())
                 .setEmail(auth0User.getEmail())
                 .build();
 
-        return userRepository.save(usuario);
+        return userRepository.save(user);
     }
 
     private Boolean auth0IdExists(final String auth0Id) {
         return userRepository.findByAuth0Id(auth0Id) != null;
     }
 
-    public Usuario getUserFromAuth0Id(final String auth0Id){
+    public User getUserFromAuth0Id(final String auth0Id){
         return userRepository.findByAuth0Id(auth0Id);
     }
 }

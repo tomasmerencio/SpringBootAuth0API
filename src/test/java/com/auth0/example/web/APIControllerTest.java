@@ -1,6 +1,5 @@
 package com.auth0.example.web;
 
-import com.auth0.example.web.controller.APIController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

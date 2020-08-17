@@ -21,7 +21,7 @@
 					"raw": "{}"
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3010/api/users/signup",
+					"raw": "http://127.0.0.1:3010/api/user/signup",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -32,8 +32,38 @@
 					"port": "3010",
 					"path": [
 						"api",
-						"users",
+						"user",
 						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Detalles del Usuario",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImVBTVFHTmpIa1RJZTRGa0ZCMXZqViJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ2Mjk5NzgxODcxNzQxNzI2NDMiLCJhdWQiOlsiYXp1cmUtYXBpLW1hbmFnZW1lbnQiLCJodHRwczovL2Rldi1xZ3g2OTMwMS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk3NjA5NzAyLCJleHAiOjE1OTc2OTYxMDIsImF6cCI6ImE2cjRhaVhydXFKazZ6UHJ3NkN6TncxRkd1dnNBR2oxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.pJjMDBVrHuOSwG0POxdC95zxD-Ng5gCkhhIvzHwqWyN5m3oqaXXXakZ5CbaxIAoPpboqt_jpMrlVCAM2E2pxdO2MhWTsBkxYCFWBWwZOPK8Skfgr3ZwrniOeqwhnGBW5lpxUHUkyNwhTa_hFdUHjxZBvOdEDENFloR5K1SQqH_ak_cGYOU3tLcddQxqu2WtwlPQqi4inIjMJXYFebTACRHonTAffC8ZQTAGb-KKuRu0pTuzARhY4rb_nmuh7Ub-JTVv87cpC16k0lFCAYSIJk0LTsRioeFEVcP0HJT1MlNBulRsTQNwT3AYs1qNyTq_E2d5JNHCdzTMsnFnZmiRMrw"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/user/details",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"user",
+						"details"
 					]
 				}
 			},
@@ -81,7 +111,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "67",
+					"raw": "50",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -120,7 +150,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "66",
+					"raw": "1",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -158,7 +188,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:3010/api/watchlists",
+					"raw": "http://127.0.0.1:3010/api/watchlist",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -169,7 +199,7 @@
 					"port": "3010",
 					"path": [
 						"api",
-						"watchlists"
+						"watchlist"
 					]
 				}
 			},
@@ -188,7 +218,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "lista1",
+					"raw": "lista2",
 					"options": {
 						"raw": {
 							"language": "text"
@@ -196,7 +226,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3010/api/watchlists",
+					"raw": "http://127.0.0.1:3010/api/watchlist",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -207,7 +237,7 @@
 					"port": "3010",
 					"path": [
 						"api",
-						"watchlists"
+						"watchlist"
 					]
 				}
 			},
@@ -226,10 +256,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "lista2"
+					"raw": "lista2actualizada",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3010/api/watchlists/7",
+					"raw": "http://127.0.0.1:3010/api/watchlist/2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -240,8 +275,8 @@
 					"port": "3010",
 					"path": [
 						"api",
-						"watchlists",
-						"7"
+						"watchlist",
+						"2"
 					]
 				}
 			},
@@ -260,7 +295,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "50",
+					"raw": "1",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -268,7 +303,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3010/api/watchlists/6",
+					"raw": "http://127.0.0.1:3010/api/watchlist/2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -279,8 +314,8 @@
 					"port": "3010",
 					"path": [
 						"api",
-						"watchlists",
-						"6"
+						"watchlist",
+						"2"
 					]
 				}
 			},
@@ -299,7 +334,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "50",
+					"raw": "1",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -307,7 +342,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3010/api/watchlists/6",
+					"raw": "http://127.0.0.1:3010/api/watchlist/2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -318,8 +353,8 @@
 					"port": "3010",
 					"path": [
 						"api",
-						"watchlists",
-						"6"
+						"watchlist",
+						"2"
 					]
 				}
 			},
@@ -338,7 +373,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "7",
+					"raw": "2",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -346,7 +381,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3010/api/watchlists",
+					"raw": "http://127.0.0.1:3010/api/watchlist",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -357,7 +392,31 @@
 					"port": "3010",
 					"path": [
 						"api",
-						"watchlists"
+						"watchlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Todos los Activos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3010/api/asset/all",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"asset",
+						"all"
 					]
 				}
 			},

@@ -1,10 +1,10 @@
 package com.auth0.example.service;
 
-import com.auth0.example.persistence.dao.ActivoRepository;
+import com.auth0.example.persistence.dao.AssetRepository;
 import com.auth0.example.persistence.dao.DashboardRepository;
-import com.auth0.example.persistence.model.Activo;
+import com.auth0.example.persistence.model.Asset;
 import com.auth0.example.persistence.model.Dashboard;
-import com.auth0.example.persistence.model.DashboardActivo;
+import com.auth0.example.persistence.model.DashboardAsset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,39 +14,39 @@ import javax.transaction.Transactional;
 @Service
 public class DashboardService implements IDashboardService{
     @Autowired
-    private ActivoRepository activoRepository;
+    private AssetRepository assetRepository;
 
     @Autowired
     private DashboardRepository dashboardRepository;
 
     @Override
     @Transactional
-    public Activo addActivoToDashboard(Long activoId, Dashboard dashboard){
-        if(!activoExisteEnDashboard(activoId, dashboard)){
-            Activo activo = activoRepository
-                    .findById(activoId)
+    public Asset addAssetToDashbooard(Long assetId, Dashboard dashboard){
+        if(!assetExistsOnDashboard(assetId, dashboard)){
+            Asset asset = assetRepository
+                    .findById(assetId)
                     .orElseThrow(EntityNotFoundException::new);
 
-            DashboardActivo dashboardActivo = new DashboardActivo.Builder()
-                    .setActivo(activo)
+            DashboardAsset dashboardAsset = new DashboardAsset.Builder()
+                    .setAsset(asset)
                     .setDashboard(dashboard)
                     .build();
 
-            dashboard.agregarDashboardActivo(dashboardActivo);
+            dashboard.addDashboardAsset(dashboardAsset);
             dashboardRepository.save(dashboard);
-            return activo;
+            return asset;
         }
         return null;
     }
 
-    private Boolean activoExisteEnDashboard(Long activoId, Dashboard dashboard){
-        return dashboard.getActivos().stream().anyMatch(a -> a.getId().equals(activoId));
+    private Boolean assetExistsOnDashboard(Long assetId, Dashboard dashboard){
+        return dashboard.getAssets().stream().anyMatch(a -> a.getId().equals(assetId));
     }
 
     @Override
     @Transactional
-    public void deleteAsset(Long activoId, Dashboard dashboard){
-        dashboard.eliminarActivo(activoId);
+    public void deleteAsset(Long assetId, Dashboard dashboard){
+        dashboard.deleteAsset(assetId);
         dashboardRepository.save(dashboard);
     }
 }
