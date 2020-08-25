@@ -30,9 +30,9 @@ public class WatchlistService implements IWatchlistService{
                     .findById(assetId)
                     .orElseThrow(EntityNotFoundException::new);
 
-            WatchlistAsset watchlistAsset = new WatchlistAsset.Builder()
-                    .setAsset(asset)
-                    .setWatchlist(watchList)
+            WatchlistAsset watchlistAsset = WatchlistAsset.builder()
+                    .asset(asset)
+                    .watchlist(watchList)
                     .build();
 
             watchList.addWatchlistAsset(watchlistAsset);

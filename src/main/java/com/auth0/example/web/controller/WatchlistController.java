@@ -72,9 +72,11 @@ public class WatchlistController {
                                                       @RequestBody Long wachlistId){
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         User user = userService.getUserFromAuth0Id(auth0User.getSub());
+
         try {
             watchlistService.deleteWatchlist(user, wachlistId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

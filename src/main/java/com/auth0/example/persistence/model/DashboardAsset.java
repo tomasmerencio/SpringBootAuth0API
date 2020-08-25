@@ -1,10 +1,19 @@
 package com.auth0.example.persistence.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+@Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "dashboard_asset")
 public class DashboardAsset {
     @Id
@@ -21,49 +30,5 @@ public class DashboardAsset {
     private Dashboard dashboard;
 
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
-    private Timestamp createdAt;
-
-    public DashboardAsset(){
-
-    }
-
-    public DashboardAsset(Builder builder){
-        this.asset = builder.asset;
-        this.dashboard = builder.dashboard;
-        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
-    }
-
-    public static class Builder{
-        private Asset asset;
-        private Dashboard dashboard;
-
-        public Builder(){
-        }
-
-        public Builder setAsset(Asset asset){
-            this.asset = asset;
-            return this;
-        }
-
-        public Builder setDashboard(Dashboard dashboard){
-            this.dashboard = dashboard;
-            return this;
-        }
-
-        public DashboardAsset build(){
-            return new DashboardAsset(this);
-        }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Asset getAsset() {
-        return asset;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
+    @Builder.Default private Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
 }
