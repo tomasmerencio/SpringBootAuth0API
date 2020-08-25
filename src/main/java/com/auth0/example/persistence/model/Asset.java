@@ -1,17 +1,9 @@
 package com.auth0.example.persistence.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
-@Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Table(name="asset")
 public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +13,35 @@ public class Asset {
     @Enumerated(EnumType.STRING)
     private AssetType assetType;
 
+    @Column(name = "ticker")
     private String ticker;
 
+    @Column(name = "description")
     private String description;
+
+    public Asset() {
+
+    }
+
+    public Asset(AssetType assetType, String ticker, String description){
+        this.assetType = assetType;
+        this.ticker = ticker;
+        this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public AssetType getAssetType() {
+        return assetType;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

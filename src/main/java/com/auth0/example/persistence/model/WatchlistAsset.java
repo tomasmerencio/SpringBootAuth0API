@@ -1,19 +1,10 @@
 package com.auth0.example.persistence.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Table(name = "watchlist_asset")
 public class WatchlistAsset {
     @Id
@@ -31,4 +22,52 @@ public class WatchlistAsset {
 
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private Timestamp createdAt;
+
+    public WatchlistAsset(){
+
+    }
+
+    public WatchlistAsset(Builder builder){
+        this.asset = builder.asset;
+        this.watchlist = builder.watchList;
+        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
+    }
+
+    public static class Builder{
+        private Asset asset;
+        private Watchlist watchList;
+
+        public Builder(){
+        }
+
+        public Builder setAsset(Asset asset){
+            this.asset = asset;
+            return this;
+        }
+
+        public Builder setWatchlist(Watchlist watchList){
+            this.watchList = watchList;
+            return this;
+        }
+
+        public WatchlistAsset build(){
+            return new WatchlistAsset(this);
+        }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public Watchlist getWatchlist() {
+        return watchlist;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
 }

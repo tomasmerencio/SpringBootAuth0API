@@ -1,7 +1,5 @@
 package com.auth0.example.persistence.model;
 
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -9,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Getter
 @Entity
 @Table(name = "users")
 public class User {
@@ -93,6 +90,42 @@ public class User {
         public User build(){
             return new User(this);
         }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getAuth0Id() {
+        return auth0Id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public Dashboard getDashboard() {
+        return dashboard;
+    }
+
+    public List<Watchlist> getWatchlists() {
+        return watchlists;
     }
 
     public void addWatchlist(Watchlist watchList){

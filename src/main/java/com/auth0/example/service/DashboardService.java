@@ -27,9 +27,9 @@ public class DashboardService implements IDashboardService{
                     .findById(assetId)
                     .orElseThrow(EntityNotFoundException::new);
 
-            DashboardAsset dashboardAsset = DashboardAsset.builder()
-                    .asset(asset)
-                    .dashboard(dashboard)
+            DashboardAsset dashboardAsset = new DashboardAsset.Builder()
+                    .setAsset(asset)
+                    .setDashboard(dashboard)
                     .build();
 
             dashboard.addDashboardAsset(dashboardAsset);

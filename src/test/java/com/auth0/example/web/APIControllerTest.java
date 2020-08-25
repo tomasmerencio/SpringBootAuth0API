@@ -19,7 +19,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests to verify that our endpoints are properly secured.
  */
-/*
 @WebMvcTest(APIController.class)
 @RunWith(SpringRunner.class)
 public class APIControllerTest {
@@ -97,4 +96,3 @@ public class APIControllerTest {
                 .andReturn();
     }
 }
-*/

@@ -1,13 +1,10 @@
 package com.auth0.example.persistence.model;
 
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
 @Entity
 @Table(name="watchlist")
 public class Watchlist {
@@ -26,6 +23,10 @@ public class Watchlist {
         orphanRemoval=true
     )
     private List<WatchlistAsset> watchlistAssets;
+
+    public Watchlist(){
+
+    }
 
     public Watchlist(String name){
         this.name = name;

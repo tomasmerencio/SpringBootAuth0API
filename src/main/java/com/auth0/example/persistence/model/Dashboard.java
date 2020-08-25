@@ -1,13 +1,10 @@
 package com.auth0.example.persistence.model;
 
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
 @Entity
 @Table(name="dashboard")
 public class Dashboard{
@@ -29,6 +26,10 @@ public class Dashboard{
 
     @OneToOne
     private User user;
+
+    public Dashboard(){
+
+    }
 
     public Dashboard(User user){
         this.user = user;
