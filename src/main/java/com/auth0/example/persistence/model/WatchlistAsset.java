@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class WatchlistAsset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, updatable=false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
     @ManyToOne
@@ -23,34 +23,34 @@ public class WatchlistAsset {
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private Timestamp createdAt;
 
-    public WatchlistAsset(){
+    public WatchlistAsset() {
 
     }
 
-    public WatchlistAsset(Builder builder){
+    public WatchlistAsset(Builder builder) {
         this.asset = builder.asset;
         this.watchlist = builder.watchList;
         this.createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
-    public static class Builder{
+    public static class Builder {
         private Asset asset;
         private Watchlist watchList;
 
-        public Builder(){
+        public Builder() {
         }
 
-        public Builder setAsset(Asset asset){
+        public Builder setAsset(Asset asset) {
             this.asset = asset;
             return this;
         }
 
-        public Builder setWatchlist(Watchlist watchList){
+        public Builder setWatchlist(Watchlist watchList) {
             this.watchList = watchList;
             return this;
         }
 
-        public WatchlistAsset build(){
+        public WatchlistAsset build() {
             return new WatchlistAsset(this);
         }
     }

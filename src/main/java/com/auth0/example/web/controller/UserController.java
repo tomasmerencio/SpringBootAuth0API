@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Handles requests to "/api" endpoints.
+ *
  * @see com.auth0.example.security.SecurityConfig to see how these endpoints are protected.
  */
 
@@ -20,7 +21,7 @@ public class UserController {
     private IUserService userService;
 
     @PostMapping(value = "/signup")
-    public ResponseEntity<User> registerUser(@RequestHeader(name="Authorization") String accessToken) {
+    public ResponseEntity<User> registerUser(@RequestHeader(name = "Authorization") String accessToken) {
 
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         System.out.println(accessToken);
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/details")
-    public ResponseEntity<User> getDetails(@RequestHeader(name="Authorization") String accessToken){
+    public ResponseEntity<User> getDetails(@RequestHeader(name = "Authorization") String accessToken) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());

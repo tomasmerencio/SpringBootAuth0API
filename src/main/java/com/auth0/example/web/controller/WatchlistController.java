@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Handles requests to "/api" endpoints.
+ *
  * @see com.auth0.example.security.SecurityConfig to see how these endpoints are protected.
  */
 
@@ -25,10 +26,10 @@ public class WatchlistController {
     private IWatchlistService watchlistService;
 
     @GetMapping("")
-    public ResponseEntity<List<Watchlist>> getAllLists(@RequestHeader(name="Authorization") String accessToken){
+    public ResponseEntity<List<Watchlist>> getAllLists(@RequestHeader(name = "Authorization") String accessToken) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
-        try{
+        try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());
             return new ResponseEntity<>(user.getWatchlists(), HttpStatus.OK);
 
@@ -38,10 +39,10 @@ public class WatchlistController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Watchlist> createWatchlist(@RequestHeader(name="Authorization") String accessToken,
-                                                     @RequestBody String watchlistName){
+    public ResponseEntity<Watchlist> createWatchlist(@RequestHeader(name = "Authorization") String accessToken,
+                                                     @RequestBody String watchlistName) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
-        try{
+        try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());
             watchlistService.addWatchlist(user, watchlistName);
             return new ResponseEntity<>(null, HttpStatus.CREATED);
@@ -52,15 +53,15 @@ public class WatchlistController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Watchlist> updateWatchlistName(@RequestHeader(name="Authorization") String accessToken,
+    public ResponseEntity<Watchlist> updateWatchlistName(@RequestHeader(name = "Authorization") String accessToken,
                                                          @PathVariable("id") Long wachlistId,
-                                                         @RequestBody String watchlistName){
+                                                         @RequestBody String watchlistName) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         User user = userService.getUserFromAuth0Id(auth0User.getSub());
 
         Watchlist watchList = watchlistService.editName(user, wachlistId, watchlistName);
 
-        if(watchList != null){
+        if (watchList != null) {
             return new ResponseEntity<>(watchList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -68,29 +69,29 @@ public class WatchlistController {
     }
 
     @DeleteMapping("")
-    public ResponseEntity<HttpStatus> deleteWatchlist(@RequestHeader(name="Authorization") String accessToken,
-                                                      @RequestBody Long wachlistId){
+    public ResponseEntity<HttpStatus> deleteWatchlist(@RequestHeader(name = "Authorization") String accessToken,
+                                                      @RequestBody Long wachlistId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         User user = userService.getUserFromAuth0Id(auth0User.getSub());
         try {
             watchlistService.deleteWatchlist(user, wachlistId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Asset> addAssetToWatchlist(@RequestHeader(name="Authorization") String accessToken,
+    public ResponseEntity<Asset> addAssetToWatchlist(@RequestHeader(name = "Authorization") String accessToken,
                                                      @PathVariable("id") Long wachlistId,
-                                                     @RequestBody Long assetId){
+                                                     @RequestBody Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         User user = userService.getUserFromAuth0Id(auth0User.getSub());
 
-        try{
+        try {
             Asset asset = watchlistService.addAssetToWatchlist(user, assetId, wachlistId);
 
-            if(asset != null){
+            if (asset != null) {
                 return new ResponseEntity<>(asset, HttpStatus.OK);
             }
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
@@ -101,13 +102,13 @@ public class WatchlistController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Asset> deleteAssetFromWatchlist(@RequestHeader(name="Authorization") String accessToken,
+    public ResponseEntity<Asset> deleteAssetFromWatchlist(@RequestHeader(name = "Authorization") String accessToken,
                                                           @PathVariable("id") Long wachlistId,
-                                                          @RequestBody Long assetId){
+                                                          @RequestBody Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         User user = userService.getUserFromAuth0Id(auth0User.getSub());
 
-        try{
+        try {
             watchlistService.deleteAsset(user, assetId, wachlistId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

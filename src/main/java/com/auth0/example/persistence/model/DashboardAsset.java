@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class DashboardAsset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, updatable=false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
     @ManyToOne
@@ -23,34 +23,34 @@ public class DashboardAsset {
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private Timestamp createdAt;
 
-    public DashboardAsset(){
+    public DashboardAsset() {
 
     }
 
-    public DashboardAsset(Builder builder){
+    public DashboardAsset(Builder builder) {
         this.asset = builder.asset;
         this.dashboard = builder.dashboard;
         this.createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
-    public static class Builder{
+    public static class Builder {
         private Asset asset;
         private Dashboard dashboard;
 
-        public Builder(){
+        public Builder() {
         }
 
-        public Builder setAsset(Asset asset){
+        public Builder setAsset(Asset asset) {
             this.asset = asset;
             return this;
         }
 
-        public Builder setDashboard(Dashboard dashboard){
+        public Builder setDashboard(Dashboard dashboard) {
             this.dashboard = dashboard;
             return this;
         }
 
-        public DashboardAsset build(){
+        public DashboardAsset build() {
             return new DashboardAsset(this);
         }
     }

@@ -21,10 +21,10 @@ public class AssetController {
     AssetRepository assetRepository;
 
     @GetMapping(value = "/all")
-    public ResponseEntity<List<Asset>> getAllAssets(){
-        try{
+    public ResponseEntity<List<Asset>> getAllAssets() {
+        try {
             return new ResponseEntity<>(assetRepository.findAll(), HttpStatus.OK);
-        } catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

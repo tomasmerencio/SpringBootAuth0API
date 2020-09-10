@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Handles requests to "/api" endpoints.
+ *
  * @see com.auth0.example.security.SecurityConfig to see how these endpoints are protected.
  */
 
@@ -23,10 +24,10 @@ public class DashboardController {
     private IDashboardService dashboardService;
 
     @GetMapping("")
-    public ResponseEntity<Dashboard> getAllAssets(@RequestHeader(name="Authorization") String accessToken){
+    public ResponseEntity<Dashboard> getAllAssets(@RequestHeader(name = "Authorization") String accessToken) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
-        try{
+        try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());
 
             return new ResponseEntity<>(user.getDashboard(), HttpStatus.OK);
@@ -37,16 +38,16 @@ public class DashboardController {
     }
 
     @PostMapping("/assets")
-    public ResponseEntity<Asset> addAsset(@RequestHeader(name="Authorization") String accessToken,
+    public ResponseEntity<Asset> addAsset(@RequestHeader(name = "Authorization") String accessToken,
                                           @RequestBody Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
-        try{
+        try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());
             Dashboard dashboard = user.getDashboard();
             Asset asset = dashboardService.addAssetToDashbooard(assetId, dashboard);
 
-            if(asset != null){
+            if (asset != null) {
                 return new ResponseEntity<>(asset, HttpStatus.OK);
             }
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
@@ -57,11 +58,11 @@ public class DashboardController {
     }
 
     @DeleteMapping("/assets")
-    public ResponseEntity<HttpStatus> deleteAsset(@RequestHeader(name="Authorization") String accessToken,
-                                                  @RequestBody Long assetId){
+    public ResponseEntity<HttpStatus> deleteAsset(@RequestHeader(name = "Authorization") String accessToken,
+                                                  @RequestBody Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
-        try{
+        try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());
             Dashboard dashboard = user.getDashboard();
             dashboardService.deleteAsset(assetId, dashboard);

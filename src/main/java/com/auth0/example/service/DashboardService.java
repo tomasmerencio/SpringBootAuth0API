@@ -12,7 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 @Service
-public class DashboardService implements IDashboardService{
+public class DashboardService implements IDashboardService {
     @Autowired
     private AssetRepository assetRepository;
 
@@ -21,8 +21,8 @@ public class DashboardService implements IDashboardService{
 
     @Override
     @Transactional
-    public Asset addAssetToDashbooard(Long assetId, Dashboard dashboard){
-        if(!assetExistsOnDashboard(assetId, dashboard)){
+    public Asset addAssetToDashbooard(Long assetId, Dashboard dashboard) {
+        if (!assetExistsOnDashboard(assetId, dashboard)) {
             Asset asset = assetRepository
                     .findById(assetId)
                     .orElseThrow(EntityNotFoundException::new);
@@ -39,13 +39,13 @@ public class DashboardService implements IDashboardService{
         return null;
     }
 
-    private Boolean assetExistsOnDashboard(Long assetId, Dashboard dashboard){
+    private Boolean assetExistsOnDashboard(Long assetId, Dashboard dashboard) {
         return dashboard.getAssets().stream().anyMatch(a -> a.getId().equals(assetId));
     }
 
     @Override
     @Transactional
-    public void deleteAsset(Long assetId, Dashboard dashboard){
+    public void deleteAsset(Long assetId, Dashboard dashboard) {
         dashboard.deleteAsset(assetId);
         dashboardRepository.save(dashboard);
     }

@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-public class WatchlistService implements IWatchlistService{
+public class WatchlistService implements IWatchlistService {
     @Autowired
     AssetRepository assetRepository;
 
@@ -25,7 +25,7 @@ public class WatchlistService implements IWatchlistService{
     @Override
     public Asset addAssetToWatchlist(User user, Long assetId, Long watchlistId) {
         Watchlist watchList = getWatchlistFromUser(user, watchlistId).orElseThrow(EntityNotFoundException::new);
-        if(!assetExistsOnWatchlist(assetId, watchList)){
+        if (!assetExistsOnWatchlist(assetId, watchList)) {
             Asset asset = assetRepository
                     .findById(assetId)
                     .orElseThrow(EntityNotFoundException::new);
@@ -42,7 +42,7 @@ public class WatchlistService implements IWatchlistService{
         return null;
     }
 
-    private Boolean assetExistsOnWatchlist(Long activoId, Watchlist watchList){
+    private Boolean assetExistsOnWatchlist(Long activoId, Watchlist watchList) {
         return watchList.getAssets().stream().anyMatch(a -> a.getId().equals(activoId));
     }
 
@@ -55,7 +55,7 @@ public class WatchlistService implements IWatchlistService{
 
     @Override
     @Transactional
-    public Watchlist addWatchlist(User user, String name){
+    public Watchlist addWatchlist(User user, String name) {
         Watchlist watchList = new Watchlist(name);
         user.addWatchlist(watchList);
         watchlistRepository.save(watchList);
@@ -64,9 +64,9 @@ public class WatchlistService implements IWatchlistService{
 
     @Override
     @Transactional
-    public Watchlist editName(User user, Long watchlistId, String name){
+    public Watchlist editName(User user, Long watchlistId, String name) {
         Optional<Watchlist> watchlistData = getWatchlistFromUser(user, watchlistId);
-        if(watchlistData.isPresent()){
+        if (watchlistData.isPresent()) {
             Watchlist watchList = watchlistData.get();
             watchList.setName(name);
             watchlistRepository.save(watchList);
@@ -78,15 +78,15 @@ public class WatchlistService implements IWatchlistService{
 
     @Override
     @Transactional
-    public void deleteWatchlist(User user, Long watchlistId){
-        if(getWatchlistFromUser(user, watchlistId).isPresent()){
+    public void deleteWatchlist(User user, Long watchlistId) {
+        if (getWatchlistFromUser(user, watchlistId).isPresent()) {
             user.deleteWatchlist(watchlistId);
             watchlistRepository.deleteById(watchlistId);
             userRepository.save(user);
         }
     }
 
-    private Optional<Watchlist> getWatchlistFromUser(User user, Long watchlistId){
+    private Optional<Watchlist> getWatchlistFromUser(User user, Long watchlistId) {
         return user.getWatchlistById(watchlistId);
     }
 }

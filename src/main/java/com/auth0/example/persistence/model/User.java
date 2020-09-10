@@ -12,7 +12,7 @@ import java.util.Optional;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, updatable=false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "name")
@@ -45,7 +45,7 @@ public class User {
         this.dashboard = new Dashboard(this);
     }
 
-    public User(Builder builder){
+    public User(Builder builder) {
         this.auth0Id = builder.auth0Id;
         this.name = builder.name;
         this.familyName = builder.familyName;
@@ -56,38 +56,38 @@ public class User {
         this.dashboard = new Dashboard(this);
     }
 
-    public static class Builder{
+    public static class Builder {
         private String auth0Id;
         private String name;
         private String familyName;
         private String username;
         private String email;
 
-        public Builder(String auth0Id){
+        public Builder(String auth0Id) {
             this.auth0Id = auth0Id;
         }
 
-        public Builder setName(String name){
+        public Builder setName(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder setFamilyName(String familyName){
+        public Builder setFamilyName(String familyName) {
             this.familyName = familyName;
             return this;
         }
 
-        public Builder setUsername(String username){
+        public Builder setUsername(String username) {
             this.username = username;
             return this;
         }
 
-        public Builder setEmail(String email){
+        public Builder setEmail(String email) {
             this.email = email;
             return this;
         }
 
-        public User build(){
+        public User build() {
             return new User(this);
         }
     }
@@ -128,18 +128,18 @@ public class User {
         return watchlists;
     }
 
-    public void addWatchlist(Watchlist watchList){
+    public void addWatchlist(Watchlist watchList) {
         this.watchlists.add(watchList);
     }
 
-    public Optional<Watchlist> getWatchlistById(Long id){
+    public Optional<Watchlist> getWatchlistById(Long id) {
         return this.watchlists
                 .stream()
                 .filter(lS -> lS.getId().equals(id))
                 .findFirst();
     }
 
-    public void deleteWatchlist(Long watchlistId){
+    public void deleteWatchlist(Long watchlistId) {
         this.watchlists.removeIf(lS -> lS.getId().equals(watchlistId));
     }
 }

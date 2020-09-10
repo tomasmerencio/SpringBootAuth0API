@@ -11,10 +11,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 import javax.transaction.Transactional;
 
 @Service
-public class UserService implements IUserService{
+public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
@@ -22,7 +23,7 @@ public class UserService implements IUserService{
     private String userInfoUri;
 
     @Override
-    public Auth0User getAuth0UserFromAccessToken(String accessToken){
+    public Auth0User getAuth0UserFromAccessToken(String accessToken) {
         // Create and set the "Authorization" header before sending HTTP request
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", accessToken);
@@ -54,7 +55,7 @@ public class UserService implements IUserService{
         return userRepository.findByAuth0Id(auth0Id) != null;
     }
 
-    public User getUserFromAuth0Id(final String auth0Id){
+    public User getUserFromAuth0Id(final String auth0Id) {
         return userRepository.findByAuth0Id(auth0Id);
     }
 }

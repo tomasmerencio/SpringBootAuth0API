@@ -3,11 +3,11 @@ package com.auth0.example.persistence.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="asset")
+@Table(name = "asset")
 public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, updatable=false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
     @Enumerated(EnumType.STRING)
@@ -23,7 +23,7 @@ public class Asset {
 
     }
 
-    public Asset(AssetType assetType, String ticker, String description){
+    public Asset(AssetType assetType, String ticker, String description) {
         this.assetType = assetType;
         this.ticker = ticker;
         this.description = description;

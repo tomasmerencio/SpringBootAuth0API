@@ -6,32 +6,32 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name="dashboard")
-public class Dashboard{
+@Table(name = "dashboard")
+public class Dashboard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, updatable=false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(
-        fetch = FetchType.LAZY,
-        cascade = CascadeType.ALL,
-        mappedBy = "dashboard",
-        orphanRemoval=true
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "dashboard",
+            orphanRemoval = true
     )
     private List<DashboardAsset> dashboardAssets;
 
     @OneToOne
     private User user;
 
-    public Dashboard(){
+    public Dashboard() {
 
     }
 
-    public Dashboard(User user){
+    public Dashboard(User user) {
         this.user = user;
         this.name = "Dashboard";
         this.dashboardAssets = new ArrayList<>();
@@ -49,15 +49,15 @@ public class Dashboard{
         return name;
     }
 
-    public List<Asset> getAssets(){
+    public List<Asset> getAssets() {
         return this.dashboardAssets.stream().map(DashboardAsset::getAsset).collect(Collectors.toList());
     }
 
-    public void addDashboardAsset(DashboardAsset dashboardAsset){
+    public void addDashboardAsset(DashboardAsset dashboardAsset) {
         this.dashboardAssets.add(dashboardAsset);
     }
 
-    public void deleteAsset(Long assetId){
+    public void deleteAsset(Long assetId) {
         this.dashboardAssets.removeIf(dA -> dA.getAsset().getId().equals(assetId));
     }
 }
