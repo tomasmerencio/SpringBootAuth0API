@@ -1,10 +1,15 @@
 package com.auth0.example.web.controller;
 
-import com.auth0.example.persistence.model.*;
+import com.auth0.example.persistence.model.Asset;
+import com.auth0.example.persistence.model.Auth0User;
+import com.auth0.example.persistence.model.User;
+import com.auth0.example.persistence.model.Watchlist;
 import com.auth0.example.service.IUserService;
 import com.auth0.example.service.IWatchlistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,9 +68,8 @@ public class WatchlistController {
 
         if (watchList != null) {
             return new ResponseEntity<>(watchList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("")
@@ -73,9 +77,11 @@ public class WatchlistController {
                                                       @RequestBody Long wachlistId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         User user = userService.getUserFromAuth0Id(auth0User.getSub());
+
         try {
             watchlistService.deleteWatchlist(user, wachlistId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

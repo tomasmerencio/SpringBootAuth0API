@@ -22,21 +22,22 @@ public class DashboardService implements IDashboardService {
     @Override
     @Transactional
     public Asset addAssetToDashbooard(Long assetId, Dashboard dashboard) {
-        if (!assetExistsOnDashboard(assetId, dashboard)) {
-            Asset asset = assetRepository
-                    .findById(assetId)
-                    .orElseThrow(EntityNotFoundException::new);
-
-            DashboardAsset dashboardAsset = new DashboardAsset.Builder()
-                    .setAsset(asset)
-                    .setDashboard(dashboard)
-                    .build();
-
-            dashboard.addDashboardAsset(dashboardAsset);
-            dashboardRepository.save(dashboard);
-            return asset;
+        if (assetExistsOnDashboard(assetId, dashboard)) {
+            return null;
         }
-        return null;
+        Asset asset = assetRepository
+                .findById(assetId)
+                .orElseThrow(EntityNotFoundException::new);
+
+        DashboardAsset dashboardAsset = new DashboardAsset.Builder()
+                .setAsset(asset)
+                .setDashboard(dashboard)
+                .build();
+
+        dashboard.addDashboardAsset(dashboardAsset);
+        dashboardRepository.save(dashboard);
+        return asset;
+
     }
 
     private Boolean assetExistsOnDashboard(Long assetId, Dashboard dashboard) {
@@ -46,6 +47,9 @@ public class DashboardService implements IDashboardService {
     @Override
     @Transactional
     public void deleteAsset(Long assetId, Dashboard dashboard) {
+        if (!assetExistsOnDashboard(assetId, dashboard)) {
+            throw new EntityNotFoundException();
+        }
         dashboard.deleteAsset(assetId);
         dashboardRepository.save(dashboard);
     }

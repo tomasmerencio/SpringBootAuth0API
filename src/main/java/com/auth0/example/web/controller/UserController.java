@@ -4,7 +4,9 @@ import com.auth0.example.persistence.model.Auth0User;
 import com.auth0.example.persistence.model.User;
 import com.auth0.example.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -22,9 +24,8 @@ public class UserController {
 
     @PostMapping(value = "/signup")
     public ResponseEntity<User> registerUser(@RequestHeader(name = "Authorization") String accessToken) {
-
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
-        System.out.println(accessToken);
+
         try {
             User registered = userService.registerNewUserAccount(auth0User);
             if (registered != null) {
@@ -40,6 +41,7 @@ public class UserController {
     @GetMapping(value = "/details")
     public ResponseEntity<User> getDetails(@RequestHeader(name = "Authorization") String accessToken) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
+
         try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());
             if (user != null) {

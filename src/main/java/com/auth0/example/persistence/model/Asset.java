@@ -23,12 +23,6 @@ public class Asset {
 
     }
 
-    public Asset(AssetType assetType, String ticker, String description) {
-        this.assetType = assetType;
-        this.ticker = ticker;
-        this.description = description;
-    }
-
     public Long getId() {
         return id;
     }

@@ -33,6 +33,22 @@ public class WatchlistAsset {
         this.createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public Watchlist getWatchlist() {
+        return watchlist;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
     public static class Builder {
         private Asset asset;
         private Watchlist watchList;
@@ -53,21 +69,5 @@ public class WatchlistAsset {
         public WatchlistAsset build() {
             return new WatchlistAsset(this);
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Asset getAsset() {
-        return asset;
-    }
-
-    public Watchlist getWatchlist() {
-        return watchlist;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
     }
 }

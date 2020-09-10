@@ -33,6 +33,18 @@ public class DashboardAsset {
         this.createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
     public static class Builder {
         private Asset asset;
         private Dashboard dashboard;
@@ -53,17 +65,5 @@ public class DashboardAsset {
         public DashboardAsset build() {
             return new DashboardAsset(this);
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Asset getAsset() {
-        return asset;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
     }
 }

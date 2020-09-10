@@ -1,10 +1,15 @@
 package com.auth0.example.web.controller;
 
-import com.auth0.example.persistence.model.*;
+import com.auth0.example.persistence.model.Asset;
+import com.auth0.example.persistence.model.Auth0User;
+import com.auth0.example.persistence.model.Dashboard;
+import com.auth0.example.persistence.model.User;
 import com.auth0.example.service.IDashboardService;
 import com.auth0.example.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -67,6 +72,7 @@ public class DashboardController {
             Dashboard dashboard = user.getDashboard();
             dashboardService.deleteAsset(assetId, dashboard);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

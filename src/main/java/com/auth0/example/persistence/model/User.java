@@ -35,10 +35,10 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private List<Watchlist> watchlists;
+    private final List<Watchlist> watchlists;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Dashboard dashboard;
+    private final Dashboard dashboard;
 
     public User() {
         this.watchlists = new ArrayList<>();
@@ -54,42 +54,6 @@ public class User {
         this.createdAt = Timestamp.valueOf(LocalDateTime.now());
         this.watchlists = new ArrayList<>();
         this.dashboard = new Dashboard(this);
-    }
-
-    public static class Builder {
-        private String auth0Id;
-        private String name;
-        private String familyName;
-        private String username;
-        private String email;
-
-        public Builder(String auth0Id) {
-            this.auth0Id = auth0Id;
-        }
-
-        public Builder setName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder setFamilyName(String familyName) {
-            this.familyName = familyName;
-            return this;
-        }
-
-        public Builder setUsername(String username) {
-            this.username = username;
-            return this;
-        }
-
-        public Builder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public User build() {
-            return new User(this);
-        }
     }
 
     public Long getId() {
@@ -141,5 +105,41 @@ public class User {
 
     public void deleteWatchlist(Long watchlistId) {
         this.watchlists.removeIf(lS -> lS.getId().equals(watchlistId));
+    }
+
+    public static class Builder {
+        private final String auth0Id;
+        private String name;
+        private String familyName;
+        private String username;
+        private String email;
+
+        public Builder(String auth0Id) {
+            this.auth0Id = auth0Id;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setFamilyName(String familyName) {
+            this.familyName = familyName;
+            return this;
+        }
+
+        public Builder setUsername(String username) {
+            this.username = username;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 }
