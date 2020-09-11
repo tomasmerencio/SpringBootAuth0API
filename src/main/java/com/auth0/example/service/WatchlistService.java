@@ -46,8 +46,8 @@ public class WatchlistService implements IWatchlistService {
         return asset;
     }
 
-    private Boolean assetExistsOnWatchlist(Long activoId, Watchlist watchList) {
-        return watchList.getAssets().stream().anyMatch(a -> a.getId().equals(activoId));
+    private Boolean assetExistsOnWatchlist(Long assetId, Watchlist watchList) {
+        return watchList.getAssets().stream().anyMatch(a -> a.getId().equals(assetId));
     }
 
     @Override

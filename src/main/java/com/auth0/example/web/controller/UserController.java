@@ -27,14 +27,14 @@ public class UserController {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try {
-            User registered = userService.registerNewUserAccount(auth0User);
-            if (registered != null) {
-                return new ResponseEntity<>(registered, HttpStatus.OK);
+            Boolean registered = userService.registerNewUserAccount(auth0User);
+            if (!registered) {
+                return new ResponseEntity<>(HttpStatus.OK);
             }
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -47,10 +47,10 @@ public class UserController {
             if (user != null) {
                 return new ResponseEntity<>(user, HttpStatus.OK);
             }
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 /**
  * Handles requests to "/api" endpoints.
  *
@@ -50,7 +52,7 @@ public class DashboardController {
         try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());
             Dashboard dashboard = user.getDashboard();
-            Asset asset = dashboardService.addAssetToDashbooard(assetId, dashboard);
+            Asset asset = dashboardService.addAssetToDashboard(assetId, dashboard);
 
             if (asset != null) {
                 return new ResponseEntity<>(asset, HttpStatus.OK);

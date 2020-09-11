@@ -21,23 +21,20 @@ public class DashboardService implements IDashboardService {
 
     @Override
     @Transactional
-    public Asset addAssetToDashbooard(Long assetId, Dashboard dashboard) {
+    public Asset addAssetToDashboard(Long assetId, Dashboard dashboard) {
         if (assetExistsOnDashboard(assetId, dashboard)) {
             return null;
         }
-        Asset asset = assetRepository
-                .findById(assetId)
-                .orElseThrow(EntityNotFoundException::new);
+        Asset asset = assetRepository.findById(assetId).orElseThrow(EntityNotFoundException::new);
 
-        DashboardAsset dashboardAsset = new DashboardAsset.Builder()
-                .setAsset(asset)
-                .setDashboard(dashboard)
+        DashboardAsset dashboardAsset = new DashboardAsset
+                .Builder().setAsset(asset).setDashboard(dashboard)
                 .build();
 
         dashboard.addDashboardAsset(dashboardAsset);
         dashboardRepository.save(dashboard);
-        return asset;
 
+        return asset;
     }
 
     private Boolean assetExistsOnDashboard(Long assetId, Dashboard dashboard) {

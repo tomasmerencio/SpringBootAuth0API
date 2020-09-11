@@ -29,17 +29,18 @@ public class UserService implements IUserService {
         headers.set("Authorization", accessToken);
         HttpEntity<String> entity = new HttpEntity<>("headers", headers);
 
-        // Use the "RestTemplate" API provided by Spring to make the HTTP request
+        // "RestTemplate" API provided by Spring to make the HTTP request
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Auth0User> user = restTemplate.exchange(userInfoUri, HttpMethod.POST, entity, Auth0User.class);
+
         return user.getBody();
     }
 
     @Override
     @Transactional
-    public User registerNewUserAccount(final Auth0User auth0User) {
+    public Boolean registerNewUserAccount(final Auth0User auth0User) {
         if (auth0IdExists(auth0User.getSub())) {
-            return null;
+            return Boolean.FALSE;
         }
         final User user = new User.Builder(auth0User.getSub())
                 .setName(auth0User.getGiven_name())
@@ -48,7 +49,9 @@ public class UserService implements IUserService {
                 .setEmail(auth0User.getEmail())
                 .build();
 
-        return userRepository.save(user);
+        userRepository.save(user);
+
+        return Boolean.TRUE;
     }
 
     private Boolean auth0IdExists(final String auth0Id) {
