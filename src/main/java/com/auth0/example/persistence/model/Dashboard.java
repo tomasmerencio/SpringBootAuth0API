@@ -13,9 +13,6 @@ public class Dashboard {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
     @OneToMany(
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
@@ -33,20 +30,11 @@ public class Dashboard {
 
     public Dashboard(User user) {
         this.user = user;
-        this.name = "Dashboard";
         this.dashboardAssets = new ArrayList<>();
     }
 
     public Long getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<Asset> getAssets() {
