@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 
 @RestController
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("*")
 @RequestMapping(path = "api/dashboard", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DashboardController {
     @Autowired

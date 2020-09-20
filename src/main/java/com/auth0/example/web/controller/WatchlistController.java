@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 @RestController
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("*")
 @RequestMapping(path = "api/watchlist", produces = MediaType.APPLICATION_JSON_VALUE)
 public class WatchlistController {
     @Autowired

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("*")
 @RequestMapping(path = "api/user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
     @Autowired
