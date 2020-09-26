@@ -28,10 +28,11 @@ public class UserController {
 
         try {
             Boolean registered = userService.registerNewUserAccount(auth0User);
+            User user = userService.getUserFromAuth0Id(auth0User.getSub());
             if (!registered) {
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(user, HttpStatus.OK);
             }
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return new ResponseEntity<>(user, HttpStatus.CONFLICT);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
