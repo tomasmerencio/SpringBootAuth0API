@@ -38,9 +38,9 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public Boolean registerNewUserAccount(final Auth0User auth0User) {
-        if (auth0IdExists(auth0User.getSub())) {
-            return Boolean.FALSE;
+    public User registerNewUserAccount(final Auth0User auth0User) {
+        if (userExists(auth0User.getSub())) {
+            return getUserFromAuth0Id(auth0User.getSub());
         }
         final User user = new User.Builder(auth0User.getSub())
                 .setName(auth0User.getGiven_name())
@@ -51,10 +51,10 @@ public class UserService implements IUserService {
 
         userRepository.save(user);
 
-        return Boolean.TRUE;
+        return user;
     }
 
-    private Boolean auth0IdExists(final String auth0Id) {
+    public Boolean userExists(final String auth0Id) {
         return userRepository.findByAuth0Id(auth0Id) != null;
     }
 
