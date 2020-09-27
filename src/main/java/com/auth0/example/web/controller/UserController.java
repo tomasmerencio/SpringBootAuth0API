@@ -27,28 +27,14 @@ public class UserController {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try {
-            Boolean exists = userService.userExists(auth0User.getSub());
-            if (!exists) {
-                User user = userService.registerNewUserAccount(auth0User);
+            Boolean userExists = userService.userExists(auth0User.getSub());
+            User user = null;
+            if (!userExists) {
+                user = userService.registerNewUserAccount(auth0User);
                 return new ResponseEntity<>(user, HttpStatus.OK);
             }
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping(value = "/exists")
-    public ResponseEntity<Boolean> exists(@RequestHeader(name = "Authorization") String accessToken) {
-        Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
-
-        try {
-            Boolean exists = userService.userExists(auth0User.getSub());
-            if (exists) {
-                return new ResponseEntity<>(true, HttpStatus.OK);
-            }
-            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+            user = userService.getUserFromAuth0Id(auth0User.getSub());
+            return new ResponseEntity<>(user, HttpStatus.CONFLICT);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

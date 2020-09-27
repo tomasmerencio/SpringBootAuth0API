@@ -40,7 +40,7 @@ public class UserService implements IUserService {
     @Transactional
     public User registerNewUserAccount(final Auth0User auth0User) {
         if (userExists(auth0User.getSub())) {
-            return getUserFromAuth0Id(auth0User.getSub());
+            return null;
         }
         final User user = new User.Builder(auth0User.getSub())
                 .setName(auth0User.getGiven_name())
