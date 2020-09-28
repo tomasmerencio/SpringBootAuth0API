@@ -87,10 +87,10 @@ public class WatchlistController {
         }
     }
 
-    @PostMapping("/{watchlistId}/{assetId}")
+    @PostMapping("/{watchlistId}/assets")
     public ResponseEntity<Asset> addAssetToWatchlist(@RequestHeader(name = "Authorization") String accessToken,
                                                      @PathVariable("watchlistId") Long watchlistId,
-                                                     @PathVariable("assetId") Long assetId) {
+                                                     @RequestBody Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         User user = userService.getUserFromAuth0Id(auth0User.getSub());
 
@@ -107,7 +107,7 @@ public class WatchlistController {
         }
     }
 
-    @DeleteMapping("/{watchlistId}/{assetId}")
+    @DeleteMapping("/{watchlistId}/assets/{assetId}")
     public ResponseEntity<Asset> deleteAssetFromWatchlist(@RequestHeader(name = "Authorization") String accessToken,
                                                           @PathVariable("watchlistId") Long watchlistId,
                                                           @PathVariable("assetId") Long assetId) {
