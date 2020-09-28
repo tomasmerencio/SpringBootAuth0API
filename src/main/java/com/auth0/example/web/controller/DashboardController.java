@@ -64,9 +64,9 @@ public class DashboardController {
         }
     }
 
-    @DeleteMapping("/assets")
+    @DeleteMapping("/assets/{assetId}")
     public ResponseEntity<HttpStatus> deleteAsset(@RequestHeader(name = "Authorization") String accessToken,
-                                                  @RequestBody Long assetId) {
+                                                  @PathVariable("assetId") Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
         try {
