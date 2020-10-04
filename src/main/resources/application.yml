@@ -6,6 +6,10 @@ auth0:
   # Replace with the API Identifier for your Auth0 API.
   audience: azure-api-management
 
+springdoc:
+  api-docs:
+    path: /api/docs
+
 # The following is standard Spring Security OAuth2 configuration.
 spring:
   security:
@@ -33,4 +37,3 @@ spring:
         ddl-auto: none
         hbm2ddl:
           auto: update
-          
