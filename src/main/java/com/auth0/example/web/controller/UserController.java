@@ -3,6 +3,8 @@ package com.auth0.example.web.controller;
 import com.auth0.example.persistence.model.Auth0User;
 import com.auth0.example.persistence.model.User;
 import com.auth0.example.service.IUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,6 +44,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/details")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<User> getDetails(@RequestHeader(name = "Authorization") String accessToken) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
