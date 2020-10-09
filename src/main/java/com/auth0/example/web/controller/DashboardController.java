@@ -6,6 +6,8 @@ import com.auth0.example.persistence.model.Dashboard;
 import com.auth0.example.persistence.model.User;
 import com.auth0.example.service.IDashboardService;
 import com.auth0.example.service.IUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +33,7 @@ public class DashboardController {
     private IDashboardService dashboardService;
 
     @GetMapping("")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<Dashboard> getAllAssets(@RequestHeader(name = "Authorization") String accessToken) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
@@ -45,6 +48,7 @@ public class DashboardController {
     }
 
     @PostMapping("/assets")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<Asset> addAsset(@RequestHeader(name = "Authorization") String accessToken,
                                           @RequestBody Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
@@ -65,6 +69,7 @@ public class DashboardController {
     }
 
     @DeleteMapping("/assets/{assetId}")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<HttpStatus> deleteAsset(@RequestHeader(name = "Authorization") String accessToken,
                                                   @PathVariable("assetId") Long assetId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);

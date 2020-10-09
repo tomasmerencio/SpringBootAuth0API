@@ -25,6 +25,7 @@ public class UserController {
     private IUserService userService;
 
     @PostMapping(value = "/signup")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<User> registerUser(@RequestHeader(name = "Authorization") String accessToken) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 

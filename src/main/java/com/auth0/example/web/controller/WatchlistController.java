@@ -6,6 +6,8 @@ import com.auth0.example.persistence.model.User;
 import com.auth0.example.persistence.model.Watchlist;
 import com.auth0.example.service.IUserService;
 import com.auth0.example.service.IWatchlistService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +33,7 @@ public class WatchlistController {
     private IWatchlistService watchlistService;
 
     @GetMapping("")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<List<Watchlist>> getAllLists(@RequestHeader(name = "Authorization") String accessToken) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
 
@@ -44,6 +47,7 @@ public class WatchlistController {
     }
 
     @PostMapping("")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<Watchlist> createWatchlist(@RequestHeader(name = "Authorization") String accessToken,
                                                      @RequestBody String watchlistName) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
@@ -58,6 +62,7 @@ public class WatchlistController {
     }
 
     @PutMapping("/{watchlistId}")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<Watchlist> updateWatchlistName(@RequestHeader(name = "Authorization") String accessToken,
                                                          @PathVariable("watchlistId") Long watchlistId,
                                                          @RequestBody String watchlistName) {
@@ -73,6 +78,7 @@ public class WatchlistController {
     }
 
     @DeleteMapping("/{watchlistId}")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<HttpStatus> deleteWatchlist(@RequestHeader(name = "Authorization") String accessToken,
                                                       @PathVariable("watchlistId") Long watchlistId) {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
@@ -88,6 +94,7 @@ public class WatchlistController {
     }
 
     @PostMapping("/{watchlistId}/assets")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<Asset> addAssetToWatchlist(@RequestHeader(name = "Authorization") String accessToken,
                                                      @PathVariable("watchlistId") Long watchlistId,
                                                      @RequestBody Long assetId) {
@@ -108,6 +115,7 @@ public class WatchlistController {
     }
 
     @DeleteMapping("/{watchlistId}/assets/{assetId}")
+    @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<Asset> deleteAssetFromWatchlist(@RequestHeader(name = "Authorization") String accessToken,
                                                           @PathVariable("watchlistId") Long watchlistId,
                                                           @PathVariable("assetId") Long assetId) {
