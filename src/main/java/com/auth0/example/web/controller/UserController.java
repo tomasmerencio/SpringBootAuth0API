@@ -36,8 +36,7 @@ public class UserController {
                 user = userService.registerNewUserAccount(auth0User);
                 return new ResponseEntity<>(user, HttpStatus.OK);
             }
-            user = userService.getUserFromAuth0Id(auth0User.getSub());
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
