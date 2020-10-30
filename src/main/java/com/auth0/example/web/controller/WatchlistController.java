@@ -53,8 +53,8 @@ public class WatchlistController {
         Auth0User auth0User = userService.getAuth0UserFromAccessToken(accessToken);
         try {
             User user = userService.getUserFromAuth0Id(auth0User.getSub());
-            watchlistService.addWatchlist(user, watchlistName);
-            return new ResponseEntity<>(null, HttpStatus.CREATED);
+            Watchlist watchlist = watchlistService.addWatchlist(user, watchlistName);
+            return new ResponseEntity<>(watchlist, HttpStatus.CREATED);
 
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
