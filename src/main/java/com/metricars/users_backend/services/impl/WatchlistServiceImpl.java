@@ -39,9 +39,11 @@ public class WatchlistServiceImpl implements IWatchlistService {
     }
 
     @Override
+    @Transactional
     public void deleteAsset(User user, Long assetId, Long watchlistId) {
         Watchlist watchlist = getWatchlistById(watchlistId);
         verifyUserWatchlist(user, watchlist);
+        watchlist.deleteAsset(assetId);
         iWatchlistAssetRepository.deleteByWatchlistIdAndAssetId(watchlistId, assetId);
     }
 
@@ -49,6 +51,7 @@ public class WatchlistServiceImpl implements IWatchlistService {
     @Transactional
     public WatchlistDTO addWatchlist(User user, String name) {
         Watchlist watchList = new Watchlist(name);
+        user.addWatchlist(watchList);
         iWatchlistRepository.save(watchList);
         return dtoConverterUtil.convertWatchlistToDTO(watchList);
     }
@@ -68,6 +71,7 @@ public class WatchlistServiceImpl implements IWatchlistService {
     public void deleteWatchlist(User user, Long watchlistId) {
         Watchlist watchlist = getWatchlistById(watchlistId);
         verifyUserWatchlist(user, watchlist);
+        user.deleteWatchlist(watchlistId);
         iWatchlistRepository.delete(watchlist);
     }
 

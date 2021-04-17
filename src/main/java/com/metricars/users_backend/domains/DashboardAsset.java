@@ -17,11 +17,11 @@ public class DashboardAsset {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "asset_id")
     private Asset asset;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dashboard_id")
     private Dashboard dashboard;
 

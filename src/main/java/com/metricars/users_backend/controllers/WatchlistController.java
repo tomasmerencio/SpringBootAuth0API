@@ -1,12 +1,11 @@
 package com.metricars.users_backend.controllers;
 
-import com.metricars.users_backend.domains.Auth0User;
 import com.metricars.users_backend.domains.User;
 import com.metricars.users_backend.dtos.AssetDTO;
 import com.metricars.users_backend.dtos.WatchlistDTO;
+import com.metricars.users_backend.security.IAuthenticationFacade;
 import com.metricars.users_backend.services.IUserService;
 import com.metricars.users_backend.services.IWatchlistService;
-import com.metricars.users_backend.utils.Auth0Client;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
@@ -30,65 +29,61 @@ import java.util.List;
 public class WatchlistController {
     private final IUserService userService;
     private final IWatchlistService watchlistService;
+    private final IAuthenticationFacade authenticationFacade;
 
     @GetMapping("")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<List<WatchlistDTO>> getAllLists(@RequestHeader(name = "Authorization") String accessToken) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+    public ResponseEntity<List<WatchlistDTO>> getAllLists() {
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         List<WatchlistDTO> watchlists = watchlistService.getWatchlists(user);
         return new ResponseEntity<>(watchlists, HttpStatus.OK);
     }
 
     @PostMapping("")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<WatchlistDTO> createWatchlist(@RequestHeader(name = "Authorization") String accessToken,
-                                                     @RequestBody String watchlistName) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+    public ResponseEntity<WatchlistDTO> createWatchlist(@RequestBody String watchlistName) {
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         WatchlistDTO watchlistDTO = watchlistService.addWatchlist(user, watchlistName);
         return new ResponseEntity<>(watchlistDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/{watchlistId}")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<WatchlistDTO> updateWatchlistName(@RequestHeader(name = "Authorization") String accessToken,
-                                                         @PathVariable("watchlistId") Long watchlistId,
-                                                         @RequestBody String watchlistName) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+    public ResponseEntity<WatchlistDTO> updateWatchlistName(@PathVariable("watchlistId") Long watchlistId,
+                                                            @RequestBody String watchlistName) {
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         WatchlistDTO watchlistDTO = watchlistService.editName(user, watchlistId, watchlistName);
         return new ResponseEntity<>(watchlistDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{watchlistId}")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<?> deleteWatchlist(@RequestHeader(name = "Authorization") String accessToken,
-                                                      @PathVariable("watchlistId") Long watchlistId) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+    public ResponseEntity<?> deleteWatchlist(@PathVariable("watchlistId") Long watchlistId) {
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         watchlistService.deleteWatchlist(user, watchlistId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/{watchlistId}/assets")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<AssetDTO> addAssetToWatchlist(@RequestHeader(name = "Authorization") String accessToken,
-                                                        @PathVariable("watchlistId") Long watchlistId,
+    public ResponseEntity<AssetDTO> addAssetToWatchlist(@PathVariable("watchlistId") Long watchlistId,
                                                         @RequestBody Long assetId) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         AssetDTO assetDTO = watchlistService.addAssetToWatchlist(user, assetId, watchlistId);
         return new ResponseEntity<>(assetDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{watchlistId}/assets/{assetId}")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<?> deleteAssetFromWatchlist(@RequestHeader(name = "Authorization") String accessToken,
-                                                          @PathVariable("watchlistId") Long watchlistId,
-                                                          @PathVariable("assetId") Long assetId) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+    public ResponseEntity<?> deleteAssetFromWatchlist(@PathVariable("watchlistId") Long watchlistId,
+                                                      @PathVariable("assetId") Long assetId) {
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         watchlistService.deleteAsset(user, assetId, watchlistId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -1,13 +1,12 @@
 package com.metricars.users_backend.controllers;
 
-import com.metricars.users_backend.domains.Auth0User;
 import com.metricars.users_backend.domains.Dashboard;
 import com.metricars.users_backend.domains.User;
 import com.metricars.users_backend.dtos.AssetDTO;
 import com.metricars.users_backend.dtos.DashboardDTO;
+import com.metricars.users_backend.security.IAuthenticationFacade;
 import com.metricars.users_backend.services.IDashboardService;
 import com.metricars.users_backend.services.IUserService;
-import com.metricars.users_backend.utils.Auth0Client;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
@@ -29,22 +28,22 @@ import org.springframework.web.bind.annotation.*;
 public class DashboardController {
     private final IUserService userService;
     private final IDashboardService dashboardService;
+    private final IAuthenticationFacade authenticationFacade;
 
     @GetMapping("")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<DashboardDTO> getAllAssets(@RequestHeader(name = "Authorization") String accessToken) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+    public ResponseEntity<DashboardDTO> getAllAssets() {
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         DashboardDTO dashboardDTO = dashboardService.getDashboardDTO(user.getDashboard());
         return new ResponseEntity<>(dashboardDTO, HttpStatus.OK);
     }
 
     @PostMapping("/assets")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<AssetDTO> addAsset(@RequestHeader(name = "Authorization") String accessToken,
-                                             @RequestBody Long assetId) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+    public ResponseEntity<AssetDTO> addAsset(@RequestBody Long assetId) {
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         Dashboard dashboard = user.getDashboard();
         AssetDTO assetDTO = dashboardService.addAssetToDashboard(assetId, dashboard);
         return new ResponseEntity<>(assetDTO, HttpStatus.OK);
@@ -52,10 +51,9 @@ public class DashboardController {
 
     @DeleteMapping("/assets/{assetId}")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
-    public ResponseEntity<?> deleteAsset(@RequestHeader(name = "Authorization") String accessToken,
-                                                  @PathVariable("assetId") Long assetId) {
-        Auth0User auth0User = Auth0Client.INSTANCE.getAuth0User(accessToken);
-        User user = userService.getUserFromAuth0Id(auth0User.getSub());
+    public ResponseEntity<?> deleteAsset(@PathVariable("assetId") Long assetId) {
+        String auth0Sub = authenticationFacade.getAuthenticationName();
+        User user = userService.getUserFromAuth0Id(auth0Sub);
         Dashboard dashboard = user.getDashboard();
         dashboardService.deleteAsset(assetId, dashboard);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

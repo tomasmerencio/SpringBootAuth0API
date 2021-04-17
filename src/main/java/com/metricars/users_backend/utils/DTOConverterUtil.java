@@ -40,6 +40,7 @@ public class DTOConverterUtil {
 
     public WatchlistDTO convertWatchlistToDTO(Watchlist watchlist) {
         WatchlistDTO watchlistDTO = new WatchlistDTO();
+        watchlistDTO.setId(watchlist.getId());
         watchlistDTO.setName(watchlist.getName());
         List<AssetDTO> assets = watchlist.getWatchlistAssets()
                 .stream()

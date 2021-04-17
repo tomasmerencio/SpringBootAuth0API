@@ -18,7 +18,6 @@ public class Dashboard {
     private Long id;
 
     @OneToMany(
-            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             mappedBy = "dashboard",
             orphanRemoval = true

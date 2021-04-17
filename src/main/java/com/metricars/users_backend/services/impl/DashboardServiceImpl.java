@@ -15,8 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
-
 @Service
 @RequiredArgsConstructor
 public class DashboardServiceImpl implements IDashboardService {
@@ -51,8 +49,9 @@ public class DashboardServiceImpl implements IDashboardService {
     @Transactional
     public void deleteAsset(Long assetId, Dashboard dashboard) {
         if (!assetExistsOnDashboard(assetId, dashboard)) {
-            throw new EntityNotFoundException("Asset");
+            throw new NotFoundException("Asset");
         }
+        dashboard.deleteAsset(assetId);
         iDashboardAssetRepository.deleteByDashboardIdAndAssetId(dashboard.getId(), assetId);
     }
 
