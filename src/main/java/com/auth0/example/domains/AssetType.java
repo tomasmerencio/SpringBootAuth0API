@@ -1,4 +1,4 @@
-package com.auth0.example.persistence.model;
+package com.auth0.example.domains;
 
 public enum AssetType {
     ACCION,

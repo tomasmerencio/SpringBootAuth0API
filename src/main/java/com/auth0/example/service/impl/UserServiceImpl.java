@@ -1,8 +1,9 @@
-package com.auth0.example.service;
+package com.auth0.example.service.impl;
 
-import com.auth0.example.persistence.dao.UserRepository;
-import com.auth0.example.persistence.model.Auth0User;
-import com.auth0.example.persistence.model.User;
+import com.auth0.example.repositories.IUserRepository;
+import com.auth0.example.domains.Auth0User;
+import com.auth0.example.domains.User;
+import com.auth0.example.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,9 +16,9 @@ import org.springframework.web.client.RestTemplate;
 import javax.transaction.Transactional;
 
 @Service
-public class UserService implements IUserService {
+public class UserServiceImpl implements IUserService {
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository IUserRepository;
 
     @Value("${spring.security.oauth2.resourceserver.jwt.user-info-uri}")
     private String userInfoUri;
@@ -49,16 +50,16 @@ public class UserService implements IUserService {
                 .setEmail(auth0User.getEmail())
                 .build();
 
-        userRepository.save(user);
+        IUserRepository.save(user);
 
         return user;
     }
 
     public Boolean userExists(final String auth0Id) {
-        return userRepository.findByAuth0Id(auth0Id) != null;
+        return IUserRepository.findByAuth0Id(auth0Id) != null;
     }
 
     public User getUserFromAuth0Id(final String auth0Id) {
-        return userRepository.findByAuth0Id(auth0Id);
+        return IUserRepository.findByAuth0Id(auth0Id);
     }
 }

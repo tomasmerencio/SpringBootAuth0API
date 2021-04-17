@@ -1,10 +1,11 @@
-package com.auth0.example.service;
+package com.auth0.example.service.impl;
 
-import com.auth0.example.persistence.dao.AssetRepository;
-import com.auth0.example.persistence.dao.DashboardRepository;
-import com.auth0.example.persistence.model.Asset;
-import com.auth0.example.persistence.model.Dashboard;
-import com.auth0.example.persistence.model.DashboardAsset;
+import com.auth0.example.repositories.IAssetRepository;
+import com.auth0.example.repositories.IDashboardRepository;
+import com.auth0.example.domains.Asset;
+import com.auth0.example.domains.Dashboard;
+import com.auth0.example.domains.DashboardAsset;
+import com.auth0.example.service.IDashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +13,12 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 @Service
-public class DashboardService implements IDashboardService {
+public class DashboardServiceImpl implements IDashboardService {
     @Autowired
-    private AssetRepository assetRepository;
+    private IAssetRepository IAssetRepository;
 
     @Autowired
-    private DashboardRepository dashboardRepository;
+    private IDashboardRepository IDashboardRepository;
 
     @Override
     @Transactional
@@ -25,14 +26,14 @@ public class DashboardService implements IDashboardService {
         if (assetExistsOnDashboard(assetId, dashboard)) {
             return null;
         }
-        Asset asset = assetRepository.findById(assetId).orElseThrow(EntityNotFoundException::new);
+        Asset asset = IAssetRepository.findById(assetId).orElseThrow(EntityNotFoundException::new);
 
         DashboardAsset dashboardAsset = new DashboardAsset
                 .Builder().setAsset(asset).setDashboard(dashboard)
                 .build();
 
         dashboard.addDashboardAsset(dashboardAsset);
-        dashboardRepository.save(dashboard);
+        IDashboardRepository.save(dashboard);
 
         return asset;
     }
@@ -48,6 +49,6 @@ public class DashboardService implements IDashboardService {
             throw new EntityNotFoundException();
         }
         dashboard.deleteAsset(assetId);
-        dashboardRepository.save(dashboard);
+        IDashboardRepository.save(dashboard);
     }
 }

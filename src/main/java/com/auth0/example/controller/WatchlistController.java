@@ -1,9 +1,9 @@
-package com.auth0.example.web.controller;
+package com.auth0.example.controller;
 
-import com.auth0.example.persistence.model.Asset;
-import com.auth0.example.persistence.model.Auth0User;
-import com.auth0.example.persistence.model.User;
-import com.auth0.example.persistence.model.Watchlist;
+import com.auth0.example.domains.Asset;
+import com.auth0.example.domains.Auth0User;
+import com.auth0.example.domains.User;
+import com.auth0.example.domains.Watchlist;
 import com.auth0.example.service.IUserService;
 import com.auth0.example.service.IWatchlistService;
 import io.swagger.v3.oas.annotations.Operation;

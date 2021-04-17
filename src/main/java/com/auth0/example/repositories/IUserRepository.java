@@ -1,10 +1,10 @@
-package com.auth0.example.persistence.dao;
+package com.auth0.example.repositories;
 
-import com.auth0.example.persistence.model.User;
+import com.auth0.example.domains.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface IUserRepository extends JpaRepository<User, Long> {
     User findByAuth0Id(String auth0Id);
 }

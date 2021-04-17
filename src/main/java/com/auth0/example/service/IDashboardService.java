@@ -1,7 +1,7 @@
 package com.auth0.example.service;
 
-import com.auth0.example.persistence.model.Asset;
-import com.auth0.example.persistence.model.Dashboard;
+import com.auth0.example.domains.Asset;
+import com.auth0.example.domains.Dashboard;
 
 public interface IDashboardService {
     Asset addAssetToDashboard(Long assetId, Dashboard dashboard);

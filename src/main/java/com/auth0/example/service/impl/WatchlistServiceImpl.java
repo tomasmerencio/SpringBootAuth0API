@@ -1,30 +1,30 @@
-package com.auth0.example.service;
+package com.auth0.example.service.impl;
 
-import com.auth0.example.persistence.dao.AssetRepository;
-import com.auth0.example.persistence.dao.UserRepository;
-import com.auth0.example.persistence.dao.WatchlistRepository;
-import com.auth0.example.persistence.model.Asset;
-import com.auth0.example.persistence.model.User;
-import com.auth0.example.persistence.model.Watchlist;
-import com.auth0.example.persistence.model.WatchlistAsset;
+import com.auth0.example.repositories.IAssetRepository;
+import com.auth0.example.repositories.IUserRepository;
+import com.auth0.example.repositories.IWatchlistRepository;
+import com.auth0.example.domains.Asset;
+import com.auth0.example.domains.User;
+import com.auth0.example.domains.Watchlist;
+import com.auth0.example.domains.WatchlistAsset;
+import com.auth0.example.service.IWatchlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-public class WatchlistService implements IWatchlistService {
+public class WatchlistServiceImpl implements IWatchlistService {
     @Autowired
-    AssetRepository assetRepository;
+    IAssetRepository IAssetRepository;
 
     @Autowired
-    WatchlistRepository watchlistRepository;
+    IWatchlistRepository IWatchlistRepository;
 
     @Autowired
-    UserRepository userRepository;
+    IUserRepository IUserRepository;
 
     @Override
     public Asset addAssetToWatchlist(User user, Long assetId, Long watchlistId) {
@@ -32,7 +32,7 @@ public class WatchlistService implements IWatchlistService {
         if (assetExistsOnWatchlist(assetId, watchList)) {
             return null;
         }
-        Asset asset = assetRepository
+        Asset asset = IAssetRepository
                 .findById(assetId)
                 .orElseThrow(EntityNotFoundException::new);
 
@@ -42,7 +42,7 @@ public class WatchlistService implements IWatchlistService {
                 .build();
 
         watchList.addWatchlistAsset(watchlistAsset);
-        watchlistRepository.save(watchList);
+        IWatchlistRepository.save(watchList);
         return asset;
     }
 
@@ -54,7 +54,7 @@ public class WatchlistService implements IWatchlistService {
     public void deleteAsset(User user, Long assetId, Long watchlistId) {
         Watchlist watchList = getWatchlistFromUser(user, watchlistId).orElseThrow(EntityNotFoundException::new);
         watchList.deleteAsset(assetId);
-        watchlistRepository.save(watchList);
+        IWatchlistRepository.save(watchList);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class WatchlistService implements IWatchlistService {
     public Watchlist addWatchlist(User user, String name) {
         Watchlist watchList = new Watchlist(name);
         user.addWatchlist(watchList);
-        watchlistRepository.save(watchList);
+        IWatchlistRepository.save(watchList);
         return watchList;
     }
 
@@ -75,7 +75,7 @@ public class WatchlistService implements IWatchlistService {
         }
         Watchlist watchList = watchlistData.get();
         watchList.setName(name);
-        watchlistRepository.save(watchList);
+        IWatchlistRepository.save(watchList);
         return watchList;
     }
 
@@ -87,8 +87,8 @@ public class WatchlistService implements IWatchlistService {
             throw new EntityNotFoundException();
         }
         user.deleteWatchlist(watchlistId);
-        watchlistRepository.deleteById(watchlistId);
-        userRepository.save(user);
+        IWatchlistRepository.deleteById(watchlistId);
+        IUserRepository.save(user);
     }
 
     private Optional<Watchlist> getWatchlistFromUser(User user, Long watchlistId) {

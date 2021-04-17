@@ -1,7 +1,7 @@
 package com.auth0.example.service;
 
-import com.auth0.example.persistence.model.Auth0User;
-import com.auth0.example.persistence.model.User;
+import com.auth0.example.domains.Auth0User;
+import com.auth0.example.domains.User;
 
 public interface IUserService {
     User registerNewUserAccount(Auth0User auth0User);

@@ -1,7 +1,7 @@
-package com.auth0.example.web.controller;
+package com.auth0.example.controller;
 
-import com.auth0.example.persistence.model.Auth0User;
-import com.auth0.example.persistence.model.User;
+import com.auth0.example.domains.Auth0User;
+import com.auth0.example.domains.User;
 import com.auth0.example.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

@@ -1,7 +1,7 @@
-package com.auth0.example.web.controller;
+package com.auth0.example.controller;
 
-import com.auth0.example.persistence.dao.AssetRepository;
-import com.auth0.example.persistence.model.Asset;
+import com.auth0.example.repositories.IAssetRepository;
+import com.auth0.example.domains.Asset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,12 +18,12 @@ import java.util.List;
 @RequestMapping(path = "api/asset", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AssetController {
     @Autowired
-    AssetRepository assetRepository;
+    IAssetRepository IAssetRepository;
 
     @GetMapping(value = "/all")
     public ResponseEntity<List<Asset>> getAllAssets() {
         try {
-            return new ResponseEntity<>(assetRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(IAssetRepository.findAll(), HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
