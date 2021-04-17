@@ -19,15 +19,14 @@ spring:
           # Replace with the domain of your Auth0 tenant.
           # Note the trailing slash is important!
           issuer-uri: https://dev-qgx69301.auth0.com/
-          user-info-uri: https://dev-qgx69301.auth0.com/userinfo
 
   datasource:
-    url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/ngaqonmr
-    username: ngaqonmr
-    password: QAsRFU1ISA29wiIcev_wSZS0rsCM2NqW
-    # url: jdbc:postgresql://localhost:5432/spring_boot_api
-    # username: "spring-user"
-    # password: ThePassword
+#    url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/ngaqonmr
+#    username: ngaqonmr
+#    password: QAsRFU1ISA29wiIcev_wSZS0rsCM2NqW
+     url: jdbc:postgresql://localhost:5432/spring_boot_api
+     username: "spring-user"
+     password: ThePassword
 
   jpa:
     show-sql: true
@@ -36,4 +35,4 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         ddl-auto: none
         hbm2ddl:
-          auto: update
+          auto: none
