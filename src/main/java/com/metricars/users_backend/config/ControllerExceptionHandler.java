@@ -57,7 +57,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler({ NoAccessException.class })
     public ResponseEntity<ApiError> forbiddenExceptions(HttpServletRequest req, Exception ex) {
-        ApiError apiError = new ApiError("BAD REQUEST", ex.getMessage(), HttpStatus.FORBIDDEN.value());
+        ApiError apiError = new ApiError("FORBIDDEN", ex.getMessage(), HttpStatus.FORBIDDEN.value());
         return ResponseEntity.status(apiError.getStatus()).body(apiError);
     }
 

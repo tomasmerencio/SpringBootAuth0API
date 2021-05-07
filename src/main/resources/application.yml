@@ -21,12 +21,12 @@ spring:
           issuer-uri: https://dev-qgx69301.auth0.com/
 
   datasource:
-#    url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/ngaqonmr
-#    username: ngaqonmr
-#    password: QAsRFU1ISA29wiIcev_wSZS0rsCM2NqW
-     url: jdbc:postgresql://localhost:5432/spring_boot_api
-     username: "spring-user"
-     password: ThePassword
+    url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/ngaqonmr
+    username: ngaqonmr
+    password: EcQ7IQEN7kq_EdQ5xn9K84gw-l5NbOu-
+#     url: jdbc:postgresql://localhost:5432/spring_boot_api
+#     username: "spring-user"
+#     password: ThePassword
 
   jpa:
     show-sql: true

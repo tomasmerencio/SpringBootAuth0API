@@ -5,11 +5,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-public enum Auth0Client {
-    INSTANCE;
-
+@Component
+public class Auth0Client {
     public Auth0User getAuth0User(String accessToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", accessToken);
