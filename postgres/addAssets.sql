@@ -130,4 +130,15 @@ VALUES
 ('WMT','CEDEAR','Walmart Inc'),
 ('X','CEDEAR','United States Steel Corporation'),
 ('XOM','CEDEAR','Exxon Mobil Corporation'),
-('YELP','CEDEAR','Yelp Inc');
+('YELP','CEDEAR','Yelp Inc')
+('BTC-USD', 'CRYPTO', 'Bitcoin USD'),
+('DOGE-USD', 'CRYPTO', 'Dogecoin USD'),
+('ETH-USD', 'CRYPTO', 'Ethereum USD'),
+('TRX-USD', 'CRYPTO', 'TRON USD'),
+('BNB-USD', 'CRYPTO', 'BinanceCoin USD'),
+('ADA-USD', 'CRYPTO', 'Cardano USD'),
+('LTC-USD', 'CRYPTO', 'Litecoin USD'),
+('UNI3-USD', 'CRYPTO', 'Uniswap USD'),
+('XMR-USD', 'CRYPTO', 'Monero USD'),
+('SOL1-USD', 'CRYPTO', 'Solana USD'),
+('BTT1-USD', 'CRYPTO', 'BitTorrent USD');
